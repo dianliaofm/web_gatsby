@@ -1,8 +1,9 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import { FaWeibo , FaGithub} from "react-icons/fa"
+import { FaWeibo, FaGithub } from "react-icons/fa"
 
-const Nav = ({ brand }) => {
+const Nav = ({ brand, i18n }) => {
+  const { home, about, developer } = i18n
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
@@ -25,12 +26,11 @@ const Nav = ({ brand }) => {
 
       <div id="navbar1" className="navbar-menu is-active">
         <div className="navbar-start">
-          <a className="navbar-item">Home</a>
+          <a className="navbar-item">{home}</a>
 
           <div className="navbar-item is-hoverable">
-            <a className="navbar-item">About</a>
-            <a className="navbar-item">Contact</a>
-            <a className="navbar-item">Developer</a>
+            <a className="navbar-item">{about}</a>
+            <a className="navbar-item">{developer}</a>
             <hr className="navbar-divider" />
           </div>
         </div>

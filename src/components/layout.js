@@ -1,10 +1,10 @@
 import * as React from "react"
 import Nav from '../components/nav'
 
-const Layout = ({ pageTitle, navInfo, children }) => {
+const Layout = ({ pageTitle, navInfo, children , i18n}) => {
   return (
     <div>
-      <Nav {...navInfo} />
+      <Nav {...navInfo} i18n={i18n}/>
       <title>{pageTitle}</title>
       <main>
         <h1>{pageTitle}</h1>
