@@ -13,8 +13,14 @@ export default function Home() {
       }
     }
   `)
+  const navInfo = {
+    brand: data.site.siteMetadata.title,
+  }
+
   return (
-    <Layout pageTitle="Home Page 1" className="container">
+    <Layout pageTitle="Home Page 1" 
+      navInfo={navInfo}
+    >
       hello
     </Layout>
   )

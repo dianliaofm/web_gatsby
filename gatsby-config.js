@@ -6,7 +6,7 @@
 
 module.exports = {
   siteMetadata: {
-    title: "Hello dianliao"
+    title: "电聊"
   },
 
   plugins: ['gatsby-plugin-sass'],
