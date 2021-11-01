@@ -7,7 +7,7 @@ exports.onCreateWebpackConfig = ({
 }) => {
   actions.setWebpackConfig({
     watchOptions: {
-      ignored: "**/node_modules",
+      ignored: ["**/node_modules", "**/.cache", "**/public"],
     },
   })
 }

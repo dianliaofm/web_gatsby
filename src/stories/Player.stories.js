@@ -5,10 +5,12 @@ const PlayerStory = {
   component: Player,
   title: "Components/Player",
   argTypes: {
-    progress: {
-      options: [1, 100, 2],
+    currentSec: {
       control: {
         type: "range",
+        min: 0,
+        max: 4 * 3600,
+        step: 60,
       },
     },
   },
@@ -17,7 +19,8 @@ const PlayerStory = {
 const Template = args => (
   <div
     style={{
-      marginTop: "100px",
+      margin: "100px",
+      width: "auto"
     }}
   >
     <Player {...args} />
@@ -26,7 +29,8 @@ const Template = args => (
 export const Primary = Template.bind({})
 Primary.args = {
   isPlaying: true,
-  progress: 20,
+  currentSec: 40,
+  totalSecs: 4 * 3600,
 }
 
 export default PlayerStory
