@@ -1,6 +1,8 @@
 import React from "react"
 import Box from "@mui/material/Box"
 import Slider from "@mui/material/Slider"
+import PlayArrow from "@mui/icons-material/PlayArrow"
+import Pause from "@mui/icons-material/Pause"
 
 const marks = [
   {
@@ -22,6 +24,7 @@ const Player = ({ progress, isPlaying }) => (
       marks={marks}
       valueLabelDisplay="auto"
     />
+    <div>{!isPlaying ? <Pause /> : <PlayArrow />}</div>
   </Box>
 )
 
