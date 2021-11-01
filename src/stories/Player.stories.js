@@ -1,7 +1,7 @@
 import React from "react"
 import Player from "../components/player"
 
-export default {
+const PlayerStory = {
   component: Player,
   title: "Components/Player",
   argTypes: {
@@ -28,3 +28,5 @@ Primary.args = {
   isPlaying: true,
   progress: 20,
 }
+
+export default PlayerStory
