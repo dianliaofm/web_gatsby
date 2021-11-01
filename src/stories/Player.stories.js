@@ -1,8 +1,13 @@
 import React from "react"
-
-import Header from "../components/player"
+import Player from "../components/player"
 
 export default {
-  component: Header,
-  title: "Components/Header",
+  component: Player,
+  title: "Components/Player",
+}
+
+const Template = args => <Player {...args} />
+export const Primary = Template.bind({})
+Primary.args = {
+  isPlaying: true,
 }
