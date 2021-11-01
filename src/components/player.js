@@ -11,13 +11,13 @@ const marks = [{
 }
 ]
 
-const Player = () => (
-  <Box sx={{ width: 300 }}>
+const Player = ({progress, isPlaying}) => (
+  <Box sx={{ width: 'auto' }}>
     <Slider
       aria-label="audio progress"
       defaultValue={80}
-      getAriaValueText={v => `${v}tt`}
-      step={10}
+      step={1}
+      value={progress}
       marks={marks}
       valueLabelDisplay="on"
     />

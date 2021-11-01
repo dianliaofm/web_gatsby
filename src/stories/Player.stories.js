@@ -6,17 +6,25 @@ export default {
   title: "Components/Player",
   argTypes: {
     progress: {
-      options: [1,100,2],
+      options: [1, 100, 2],
       control: {
-        type: 'range'
-      }
-    }
-  }
+        type: "range",
+      },
+    },
+  },
 }
 
-const Template = args => <Player {...args} />
+const Template = args => (
+  <div
+    style={{
+      marginTop: "100px",
+    }}
+  >
+    <Player {...args} />
+  </div>
+)
 export const Primary = Template.bind({})
 Primary.args = {
   isPlaying: true,
-  progress: 20
+  progress: 20,
 }
