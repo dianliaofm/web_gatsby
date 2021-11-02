@@ -1,13 +1,12 @@
 import React from "react"
 import AppBar from "@mui/material/AppBar"
-import Slider from "@mui/material/Slider"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
-import { formatDuration } from "../util/duration"
 import { common } from "@mui/material/colors"
 import { useSelector, useDispatch } from "react-redux"
 import { toggle } from "../state/audioPlay"
 import { setTime } from "../state/audioControl"
 import PlayButton from "../components/playButton"
+import AudioSlider from "../components/audioSlider"
 
 const theme = createTheme({
   palette: {
@@ -31,15 +30,10 @@ const Player = () => {
         sx={{ top: "auto", bottom: 0 }}
         color="secondary"
       >
-        <Slider
-          aria-label="audio progress"
-          step={1}
-          value={currentSec}
-          min={0}
-          max={totalSecs}
-          valueLabelDisplay="auto"
-          valueLabelFormat={formatDuration}
-          onChange={(e, val) => {
+        <AudioSlider
+          currentSec={currentSec}
+          totalSecs={totalSecs}
+          changeFn={(e, val) => {
             dispatch(setTime(val))
           }}
         />
