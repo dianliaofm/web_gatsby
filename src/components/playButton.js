@@ -4,9 +4,10 @@ import Pause from "@mui/icons-material/Pause"
 import IconButton from "@mui/material/IconButton"
 
 const PlayButton = ({ isPlaying, toggleFn }) => {
+  const Btn = !isPlaying ? Pause : PlayArrow
   return (
-    <IconButton aria-label="play-pause" onClick={toggleFn}>
-      {!isPlaying ? <Pause /> : <PlayArrow />}
+    <IconButton aria-label="play-pause" onClick={toggleFn} size="large">
+      <Btn fontSize="large"/>
     </IconButton>
   )
 }

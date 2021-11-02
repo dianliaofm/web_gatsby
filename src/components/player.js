@@ -5,8 +5,8 @@ import { common } from "@mui/material/colors"
 import { useSelector, useDispatch } from "react-redux"
 import { toggle } from "../state/audioPlay"
 import { setTime } from "../state/audioControl"
-import PlayButton from "../components/playButton"
 import AudioSlider from "../components/audioSlider"
+import MiniControl from "../components/miniControl"
 
 const theme = createTheme({
   palette: {
@@ -37,10 +37,7 @@ const Player = () => {
             dispatch(setTime(val))
           }}
         />
-        <PlayButton
-          isPlaying={isPlaying}
-          toggleFn={() => dispatch(toggle(isPlaying))}
-        />
+        <MiniControl toggleFn={() => dispatch(toggle(isPlaying))} isPlaying={isPlaying} />
       </AppBar>
     </ThemeProvider>
   )
