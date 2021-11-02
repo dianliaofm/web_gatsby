@@ -6,6 +6,9 @@ import Pause from "@mui/icons-material/Pause"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { formatDuration } from "../util/duration"
 import { common } from "@mui/material/colors"
+import { useSelector, useDispatch } from "react-redux"
+import { toggle } from "../state/audioPlay"
+import IconButton from "@mui/material/IconButton"
 
 const theme = createTheme({
   palette: {
@@ -15,10 +18,16 @@ const theme = createTheme({
   },
 })
 
-const Player = ({ currentSec, totalSecs, isPlaying }) => {
+const Player = ({ currentSec, totalSecs }) => {
+  const isPlaying = useSelector(st => st.play.isPlay)
+  const dispatch = useDispatch()
   return (
     <ThemeProvider theme={theme}>
-      <AppBar poisition="fixed" sx={{ top: "auto", bottom: 0 }} color="secondary">
+      <AppBar
+        poisition="fixed"
+        sx={{ top: "auto", bottom: 0 }}
+        color="secondary"
+      >
         <Slider
           aria-label="audio progress"
           step={1}
@@ -28,7 +37,12 @@ const Player = ({ currentSec, totalSecs, isPlaying }) => {
           valueLabelDisplay="auto"
           valueLabelFormat={formatDuration}
         />
-        {!isPlaying ? <Pause /> : <PlayArrow />}
+        <IconButton
+          aria-label="play-pause"
+          onClick={() => dispatch(toggle(isPlaying))}
+        >
+          {!isPlaying ? <Pause /> : <PlayArrow />}
+        </IconButton>
       </AppBar>
     </ThemeProvider>
   )
