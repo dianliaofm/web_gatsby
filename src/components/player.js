@@ -28,7 +28,8 @@ const Player = ({ currentSec, totalSecs, isPlaying }) => {
         valueLabelDisplay="auto"
         valueLabelFormat={formatDuration}
       />
-      <div>{!isPlaying ? <Pause /> : <PlayArrow />}</div>
+      {!isPlaying ? <Pause /> : <PlayArrow />}
+      <p>hello test typo</p>
     </Box>
   )
 }
