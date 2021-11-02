@@ -1,15 +1,13 @@
 import React from "react"
 import AppBar from "@mui/material/AppBar"
 import Slider from "@mui/material/Slider"
-import PlayArrow from "@mui/icons-material/PlayArrow"
-import Pause from "@mui/icons-material/Pause"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { formatDuration } from "../util/duration"
 import { common } from "@mui/material/colors"
 import { useSelector, useDispatch } from "react-redux"
 import { toggle } from "../state/audioPlay"
 import { setTime } from "../state/audioControl"
-import IconButton from "@mui/material/IconButton"
+import PlayButton from "../components/playButton"
 
 const theme = createTheme({
   palette: {
@@ -42,16 +40,13 @@ const Player = () => {
           valueLabelDisplay="auto"
           valueLabelFormat={formatDuration}
           onChange={(e, val) => {
-            console.log("val", val)
             dispatch(setTime(val))
           }}
         />
-        <IconButton
-          aria-label="play-pause"
-          onClick={() => dispatch(toggle(isPlaying))}
-        >
-          {!isPlaying ? <Pause /> : <PlayArrow />}
-        </IconButton>
+        <PlayButton
+          isPlaying={isPlaying}
+          toggleFn={() => dispatch(toggle(isPlaying))}
+        />
       </AppBar>
     </ThemeProvider>
   )
