@@ -8,6 +8,7 @@ import { formatDuration } from "../util/duration"
 import { common } from "@mui/material/colors"
 import { useSelector, useDispatch } from "react-redux"
 import { toggle } from "../state/audioPlay"
+import { setTime } from "../state/audioControl"
 import IconButton from "@mui/material/IconButton"
 
 const theme = createTheme({
@@ -18,9 +19,13 @@ const theme = createTheme({
   },
 })
 
-const Player = ({ currentSec, totalSecs }) => {
+const Player = () => {
   const isPlaying = useSelector(st => st.play.isPlay)
   const dispatch = useDispatch()
+
+  const currentSec = useSelector(s => s.control.currentSec)
+  const totalSecs = useSelector(s => s.control.total)
+
   return (
     <ThemeProvider theme={theme}>
       <AppBar
@@ -36,6 +41,10 @@ const Player = ({ currentSec, totalSecs }) => {
           max={totalSecs}
           valueLabelDisplay="auto"
           valueLabelFormat={formatDuration}
+          onChange={(e, val) => {
+            console.log("val", val)
+            dispatch(setTime(val))
+          }}
         />
         <IconButton
           aria-label="play-pause"
