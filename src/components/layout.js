@@ -1,15 +1,17 @@
 import * as React from "react"
-import Nav from '../components/nav'
+import Nav from "../components/nav"
+import Player from "../components/player"
 
-const Layout = ({ pageTitle, navInfo, children , i18n}) => {
+const Layout = ({ pageTitle, navInfo, children, i18n }) => {
   return (
     <div>
-      <Nav {...navInfo} i18n={i18n}/>
+      <Nav {...navInfo} i18n={i18n} />
       <title>{pageTitle}</title>
       <main>
         <h1>{pageTitle}</h1>
         {children}
       </main>
+      <Player currentSec={10} totalSecs={101} />
     </div>
   )
 }

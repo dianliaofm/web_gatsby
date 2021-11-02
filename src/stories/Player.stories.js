@@ -1,4 +1,4 @@
-import React from "react"
+// import React from "react"
 import Player from "../components/player"
 
 const PlayerStory = {
@@ -16,16 +16,7 @@ const PlayerStory = {
   },
 }
 
-const Template = args => (
-  <div
-    style={{
-      margin: "100px",
-      width: "auto"
-    }}
-  >
-    <Player {...args} />
-  </div>
-)
+const Template = Player
 export const Primary = Template.bind({})
 Primary.args = {
   isPlaying: true,

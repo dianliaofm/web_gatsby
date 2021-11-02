@@ -1,36 +1,36 @@
 import React from "react"
-import Box from "@mui/material/Box"
+import AppBar from "@mui/material/AppBar"
 import Slider from "@mui/material/Slider"
 import PlayArrow from "@mui/icons-material/PlayArrow"
 import Pause from "@mui/icons-material/Pause"
+import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { formatDuration } from "../util/duration"
+import { common } from "@mui/material/colors"
+
+const theme = createTheme({
+  palette: {
+    secondary: {
+      main: common.white,
+    },
+  },
+})
 
 const Player = ({ currentSec, totalSecs, isPlaying }) => {
-  const marks = [
-    {
-      value: 0,
-      label: formatDuration(currentSec),
-    },
-    {
-      value: totalSecs,
-      label: formatDuration(totalSecs),
-    },
-  ]
   return (
-    <Box sx={{ width: "auto" }}>
-      <Slider
-        aria-label="audio progress"
-        step={1}
-        value={currentSec}
-        min={0}
-        max={totalSecs}
-        marks={marks}
-        valueLabelDisplay="auto"
-        valueLabelFormat={formatDuration}
-      />
-      {!isPlaying ? <Pause /> : <PlayArrow />}
-      <p>hello test typo</p>
-    </Box>
+    <ThemeProvider theme={theme}>
+      <AppBar poisition="fixed" sx={{ top: "auto", bottom: 0 }} color="secondary">
+        <Slider
+          aria-label="audio progress"
+          step={1}
+          value={currentSec}
+          min={0}
+          max={totalSecs}
+          valueLabelDisplay="auto"
+          valueLabelFormat={formatDuration}
+        />
+        {!isPlaying ? <Pause /> : <PlayArrow />}
+      </AppBar>
+    </ThemeProvider>
   )
 }
 
