@@ -13,19 +13,25 @@ const Player = () => {
   const totalSecs = useSelector(s => s.control.total)
 
   return (
-      <div
-        poisition="fixed"
-        style={{ top: "auto", bottom: 0 }}
-      >
-        <AudioSlider
-          currentSec={currentSec}
-          totalSecs={totalSecs}
-          changeFn={(val) => {
-            dispatch(setTime(val))
-          }}
-        />
-        <MiniControl toggleFn={() => dispatch(toggle(isPlaying))} isPlaying={isPlaying} />
-      </div>
+    <div
+      style={{
+        position: "fixed",
+        bottom: 5,
+        width: "100%",
+      }}
+    >
+      <AudioSlider
+        currentSec={currentSec}
+        totalSecs={totalSecs}
+        changeFn={val => {
+          dispatch(setTime(val))
+        }}
+      />
+      <MiniControl
+        toggleFn={() => dispatch(toggle(isPlaying))}
+        isPlaying={isPlaying}
+      />
+    </div>
   )
 }
 

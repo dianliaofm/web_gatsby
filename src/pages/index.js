@@ -1,7 +1,6 @@
 import React from "react"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
-import { Slider, Switch, Button } from "antd"
 import 'antd/dist/antd.css';
 
 
