@@ -20,7 +20,7 @@ const Player = () => {
         <AudioSlider
           currentSec={currentSec}
           totalSecs={totalSecs}
-          changeFn={(e, val) => {
+          changeFn={(val) => {
             dispatch(setTime(val))
           }}
         />
