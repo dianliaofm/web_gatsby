@@ -8,7 +8,15 @@ const MiniControl = ({ toggleFn, isPlaying }) => {
       <Col span={4}>
         <span>image</span>
       </Col>
-      <Col span={17}>title</Col>
+      <Col
+        span={17}
+        style={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        title
+      </Col>
       <Col
         span={3}
         style={{

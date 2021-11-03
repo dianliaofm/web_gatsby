@@ -8,7 +8,6 @@ const Layout = ({ pageTitle, navInfo, children, i18n }) => {
       <Nav {...navInfo} i18n={i18n} />
       <title>{pageTitle}</title>
       <main>
-        <h1>{pageTitle}</h1>
         {children}
       </main>
       <Player currentSec={10} totalSecs={101} />

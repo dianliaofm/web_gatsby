@@ -1,37 +1,12 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import Layout from "../components/layout"
 import 'antd/dist/antd.css';
+import LayoutMeta  from '../components/layoutMeta'
 
 
 export default function Home() {
-  const data = useStaticQuery(metaQuery)
-  const { title, i18n } = data.site.siteMetadata
-  const navInfo = {
-    brand: title,
-  }
-  const lang = i18n.cn
-
   return (
-    <Layout pageTitle="Home Page 1" navInfo={navInfo} i18n={lang}>
-      hello
-    </Layout>
+    <LayoutMeta pageTitle="index">
+      index page
+    </LayoutMeta>
   )
 }
-
-const metaQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-        i18n {
-          cn {
-            home
-            about
-            developer
-          }
-        }
-      }
-    }
-  }
-`

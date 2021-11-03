@@ -4,13 +4,11 @@ import { Link } from "gatsby"
 const Nav = ({ brand, i18n }) => {
   const { home, about, developer } = i18n
   return (
-    <nav className="navbar" role="navigation" aria-label="main navigation">
-      <div className="navbar-brand">
-        <Link className="navbar-item" href="/">
-          {brand}
-        </Link>
+    <nav role="navigation" aria-label="main navigation">
+      <div >
+        <Link to="/">{brand}</Link>
 
-
+        <Link to="/about">{about}</Link>
       </div>
     </nav>
   )

@@ -1,10 +1,9 @@
 import * as React from "react"
+import LayoutMeta from "../components/layoutMeta"
+import "antd/dist/antd.css"
 
-const AboutPage = () => (
-  <main>
-    <title>About me</title>
-    <p>Hello there</p>
-  </main>
-)
+const AboutPage = () => {
+  return <LayoutMeta pageTitle="About"> about page</LayoutMeta>
+}
 
 export default AboutPage
