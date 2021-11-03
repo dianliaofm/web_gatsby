@@ -1,14 +1,13 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import Layout from "../components/layout"
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import { Slider, Switch, Button } from "antd"
+import 'antd/dist/antd.css';
+
 
 export default function Home() {
   const data = useStaticQuery(metaQuery)
-  const {title, i18n} = data.site.siteMetadata
+  const { title, i18n } = data.site.siteMetadata
   const navInfo = {
     brand: title,
   }
