@@ -6,7 +6,16 @@ import Pause from "@ant-design/icons/PauseOutlined"
 const PlayButton = ({ isPlaying, toggleFn }) => {
   const Btn = !isPlaying ? Pause : PlayArrow
   return (
-    <Button type="primary" shape="circle" icon={<Btn />} onClick={toggleFn} size="large"/>
+    <Button
+      type="primary"
+      shape="circle"
+      icon={<Btn />}
+      onClick={toggleFn}
+      size="large"
+      style={{
+        margin: 5,
+      }}
+    />
   )
 }
 

@@ -30,7 +30,7 @@ const App = ({ pageTitle, children }) => {
       toggleFn={() => setIsPlaying(!isPlaying)}
       totalSecs={totalSecs}
       currentSec={currentSec}
-      slideFn={v => setCurrentSec(v)}
+      slideFn={setCurrentSec}
     />
   )
 

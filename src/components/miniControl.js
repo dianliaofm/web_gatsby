@@ -1,15 +1,17 @@
 import React from "react"
 import PlayButton from "../components/playButton"
-import { Row, Col } from "antd"
+import { Row, Col, Image } from "antd"
+
+const w = 64
 
 const MiniControl = ({ toggleFn, isPlaying }) => {
   return (
     <Row>
-      <Col span={4}>
-        <span>image</span>
+      <Col>
+        <Image width={w} height={w} src="error" />
       </Col>
       <Col
-        span={17}
+        flex="8"
         style={{
           display: "flex",
           alignItems: "center",
@@ -18,10 +20,11 @@ const MiniControl = ({ toggleFn, isPlaying }) => {
         title
       </Col>
       <Col
-        span={3}
+        flex="1"
         style={{
           display: "flex",
           justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <PlayButton isPlaying={isPlaying} toggleFn={toggleFn} />
