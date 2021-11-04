@@ -1,30 +1,46 @@
-exports.createPages = async ({ actions }) => {
-  const { createPage, createNode } = actions
-  const arr = [1, 2, 3, 4, 5]
-  arr.forEach(x => {
-    createPage({
-      path: `/ep/${x}`,
-      component: require.resolve("./src/templates/episode.js"),
-      context: {
-        id: x,
-        title: `audio ${x}`,
-      },
-    })
-  })
-}
+const episodeQuery = `
+  query epQuery {
+    allEpisode {
+      nodes {
+        epId
+        image
+        title
+      }
+    }
+  }`
 
 const eps = [
   {
     image: "https://sls11.s3.amazonaws.com/thumb1.jpg",
     title: "test ep 1",
-    epId: 1001,
+    epId: 2,
   },
   {
     image: "https://sls11.s3.amazonaws.com/thumb2.jpg",
     title: "test ep 2",
-    epId: 1002,
+    epId: 3,
   },
 ]
+
+exports.createPages = async ({ actions, graphql }) => {
+  const { createPage } = actions
+  const result = await graphql(episodeQuery)
+  if (result.errors) {
+    throw result.errors
+  }
+
+  const arr = result.data.allEpisode.nodes
+  arr.forEach(x => {
+    createPage({
+      path: `/ep/${x.epId}`,
+      component: require.resolve("./src/templates/episode.js"),
+      context: {
+        id: x.epId,
+        title: x.title,
+      },
+    })
+  })
+}
 
 exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
   const { createNode } = actions
