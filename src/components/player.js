@@ -2,7 +2,14 @@ import React from "react"
 import AudioSlider from "../components/audioSlider"
 import MiniControl from "../components/miniControl"
 
-const Player = ({ isPlaying, currentSec, totalSecs, toggleFn , slideFn}) => {
+const Player = ({
+  isPlaying,
+  currentSec,
+  totalSecs,
+  toggleFn,
+  slideFn,
+  eps,
+}) => {
   return (
     <div
       style={{
@@ -16,7 +23,7 @@ const Player = ({ isPlaying, currentSec, totalSecs, toggleFn , slideFn}) => {
         totalSecs={totalSecs}
         changeFn={slideFn}
       />
-      <MiniControl toggleFn={toggleFn} isPlaying={isPlaying} />
+      <MiniControl toggleFn={toggleFn} isPlaying={isPlaying} eps={eps} />
     </div>
   )
 }

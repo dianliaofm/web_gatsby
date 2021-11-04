@@ -25,7 +25,7 @@ const App = ({ pageTitle, children }) => {
   const [currentSec, setCurrentSec] = useRecoilState(currentSecState)
   const totalSecs = useRecoilValue(totalSecsState)
 
-  console.log("get eps ",data.allEpisode.nodes);
+  const eps = data.allEpisode.nodes
 
   const player = (
     <Player
@@ -34,6 +34,7 @@ const App = ({ pageTitle, children }) => {
       totalSecs={totalSecs}
       currentSec={currentSec}
       slideFn={setCurrentSec}
+      eps={eps}
     />
   )
 

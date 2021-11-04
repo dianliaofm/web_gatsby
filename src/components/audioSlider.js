@@ -1,6 +1,6 @@
 import React from "react"
 import { formatDuration } from "../util/duration"
-import { Slider } from 'antd';
+import { Slider } from "antd"
 
 const AudioSlider = ({ currentSec, totalSecs, changeFn }) => {
   return (

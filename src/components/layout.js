@@ -1,9 +1,8 @@
 // import { useStaticQuery, graphql } from "gatsby"
 import * as React from "react"
-import 'antd/dist/antd.css';
+import "antd/dist/antd.css"
 
-
-const Layout = ({ children, player , }) => {
+const Layout = ({ children, player }) => {
   /*
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {

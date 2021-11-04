@@ -4,11 +4,12 @@ import { Row, Col, Image } from "antd"
 
 const w = 64
 
-const MiniControl = ({ toggleFn, isPlaying }) => {
+const MiniControl = ({ toggleFn, isPlaying, eps }) => {
+  const currentEp = eps[0]
   return (
     <Row>
       <Col>
-        <Image width={w} height={w} src="error" />
+        <Image width={w} height={w} src={currentEp.image} />
       </Col>
       <Col
         flex="8"
@@ -17,7 +18,7 @@ const MiniControl = ({ toggleFn, isPlaying }) => {
           alignItems: "center",
         }}
       >
-        title
+        {currentEp.title}
       </Col>
       <Col
         flex="1"
