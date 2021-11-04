@@ -1,4 +1,4 @@
-// import { useStaticQuery } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import { atom, useRecoilState, useRecoilValue } from "recoil"
 import Player from "./player"
 import React from "react"
@@ -20,9 +20,12 @@ const totalSecsState = atom({
 })
 
 const App = ({ pageTitle, children }) => {
+  const data = useStaticQuery(episodeListQuery)
   const [isPlaying, setIsPlaying] = useRecoilState(playState)
   const [currentSec, setCurrentSec] = useRecoilState(currentSecState)
   const totalSecs = useRecoilValue(totalSecsState)
+
+  console.log("get eps ",data.allEpisode.nodes);
 
   const player = (
     <Player
@@ -42,3 +45,15 @@ const App = ({ pageTitle, children }) => {
 }
 
 export default App
+
+const episodeListQuery = graphql`
+  query MyQuery {
+    allEpisode {
+      nodes {
+        epId
+        image
+        title
+      }
+    }
+  }
+`
