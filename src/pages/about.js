@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
 
-import Layout from "../components/layoutMeta"
+import Layout from "../components/app"
 import Seo from "../components/seo"
 
 const AboutPage = () => (

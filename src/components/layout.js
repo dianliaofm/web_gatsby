@@ -1,10 +1,10 @@
 import { useStaticQuery, graphql } from "gatsby"
 import * as React from "react"
-import Header from "./header"
 import 'antd/dist/antd.css';
 
 
-const Layout = ({ children, player }) => {
+const Layout = ({ children, player , }) => {
+  /*
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -14,10 +14,10 @@ const Layout = ({ children, player }) => {
       }
     }
   `)
+  */
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <main>{children}</main>
       {player}
       <footer

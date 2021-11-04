@@ -3,5 +3,9 @@
  *
  * See: https://www.gatsbyjs.com/docs/browser-apis/
  */
+const React = require("react")
+const Provider = require("recoil").RecoilRoot
 
-// You can delete this file if you're not using it
+exports.wrapRootElement = ({ element }) => {
+  return <Provider>{element}</Provider>
+}
