@@ -1,4 +1,4 @@
-import { useStaticQuery, graphql } from "gatsby"
+// import { useStaticQuery, graphql } from "gatsby"
 import * as React from "react"
 import 'antd/dist/antd.css';
 
