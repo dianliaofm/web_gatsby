@@ -18,6 +18,7 @@ const eps = [
   {
     image: "https://sls11.s3.amazonaws.com/thumb2.jpg",
     title: "test ep 2",
+    url: "http://podcast40.oss-cn-shanghai.aliyuncs.com/test1.mp3",
     epId: 3,
   },
 ]

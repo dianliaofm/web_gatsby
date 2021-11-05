@@ -1,6 +1,25 @@
+import { useStaticQuery, graphql } from "gatsby"
 import React, { useRef } from "react"
+import { useRecoilValue } from "recoil"
+import { playState } from "../state/store"
 
-const Audio = ({ src, isPlaying }) => {
+const episodesQuery = graphql`
+  query EpQuery {
+    allEpisode {
+      nodes {
+        url
+      }
+    }
+  }
+`
+
+const Audio = () => {
+  const data = useStaticQuery(episodesQuery)
+  const eps = data.allEpisode.nodes
+
+  const src = eps[1].url
+  const isPlaying = useRecoilValue(playState)
+
   const audioEl = useRef(null)
   if (audioEl && audioEl.current) {
     if (isPlaying) {

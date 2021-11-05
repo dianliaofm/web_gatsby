@@ -3,9 +3,15 @@
  *
  * See: https://www.gatsbyjs.com/docs/browser-apis/
  */
-const React = require("react")
-const Provider = require("recoil").RecoilRoot
+import Audio from "./src/components/htmlAudio"
+import React from 'react'
+import { RecoilRoot as Provider } from "recoil"
 
-exports.wrapRootElement = ({ element }) => {
-  return <Provider>{element}</Provider>
+export const wrapRootElement = ({ element }) => {
+  return (
+    <Provider>
+      <Audio />
+      {element}
+    </Provider>
+  )
 }

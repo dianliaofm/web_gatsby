@@ -3,11 +3,7 @@ import { atom, useRecoilState, useRecoilValue } from "recoil"
 import Player from "./player"
 import React from "react"
 import Layout from "./layout"
-
-const playState = atom({
-  key: "playState",
-  default: false,
-})
+import { playState } from "../state/store"
 
 const currentSecState = atom({
   key: "currentSecState",
@@ -20,11 +16,11 @@ const totalSecsState = atom({
 })
 
 const App = ({ pageTitle, children }) => {
-  const data = useStaticQuery(episodeListQuery)
-  const [isPlaying, setIsPlaying] = useRecoilState(playState)
   const [currentSec, setCurrentSec] = useRecoilState(currentSecState)
   const totalSecs = useRecoilValue(totalSecsState)
+  const [isPlaying, setIsPlaying] = useRecoilState(playState)
 
+  const data = useStaticQuery(episodeListQuery)
   const eps = data.allEpisode.nodes
 
   const player = (
