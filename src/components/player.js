@@ -2,7 +2,6 @@ import React from "react"
 import AudioSlider from "../components/audioSlider"
 import MiniControl from "../components/miniControl"
 
-
 const Player = ({
   isPlaying,
   currentSec,

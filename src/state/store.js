@@ -1,13 +1,11 @@
 import { atom } from "recoil"
 
-const audioUrlState = atom({
-  key: "audioUrlState",
-  default: "",
-})
-
-const playState = atom({
+export const playState = atom({
   key: "playState",
   default: false,
 })
 
-export { audioUrlState, playState }
+export const episodeListState = atom({
+  key: "episodeListState",
+  default: [],
+})

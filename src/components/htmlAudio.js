@@ -1,26 +1,9 @@
-import { useStaticQuery, graphql } from "gatsby"
 import React, { useRef, useState, useEffect } from "react"
 import { useRecoilValue } from "recoil"
-import { playState } from "../state/store"
+import { episodeListState } from "../state/store"
 
-const episodesQuery = graphql`
-  query EpQuery {
-    allEpisode {
-      nodes {
-        image
-        epId
-        url
-        title
-      }
-    }
-  }
-`
-
-const CustomAudioContainer = () => {
-  const data = useStaticQuery(episodesQuery)
-  const eps = data.allEpisode.nodes
-
-  const [trackIndex, setTrackIndex] = useState(1)
+const CustomAudioContainer = ({ eps }) => {
+  const [trackIndex, setTrackIndex] = useState(0)
   const [trackProgress, setTrackProgress] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
 
@@ -131,7 +114,15 @@ const CustomAudioContainer = () => {
   )
 }
 
-export default CustomAudioContainer
+const CustomAudioManager = () => {
+  const eps = useRecoilValue(episodeListState)
+  if (eps.length < 1) {
+    return null
+  }
+  return <CustomAudioContainer eps={eps} />
+}
+
+export default CustomAudioManager
 
 const CustomAudioControls = ({
   onPrevClick,

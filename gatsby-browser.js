@@ -4,7 +4,7 @@
  * See: https://www.gatsbyjs.com/docs/browser-apis/
  */
 import Audio from "./src/components/htmlAudio"
-import React from 'react'
+import React from "react"
 import { RecoilRoot as Provider } from "recoil"
 
 export const wrapRootElement = ({ element }) => {
