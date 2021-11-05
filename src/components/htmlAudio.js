@@ -1,5 +1,5 @@
 import { useStaticQuery, graphql } from "gatsby"
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import { useRecoilValue } from "recoil"
 import { playState } from "../state/store"
 
@@ -7,7 +7,10 @@ const episodesQuery = graphql`
   query EpQuery {
     allEpisode {
       nodes {
+        image
+        epId
         url
+        title
       }
     }
   }
@@ -17,22 +20,35 @@ const Audio = () => {
   const data = useStaticQuery(episodesQuery)
   const eps = data.allEpisode.nodes
 
-  const src = eps[1].url
-  const isPlaying = useRecoilValue(playState)
+  const [trackIndex, setTrackIndex] = useState(1)
+  const [trackProgress, setTrackProgress] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
 
-  const audioEl = useRef(null)
-  if (audioEl && audioEl.current) {
-    if (isPlaying) {
-      audioEl.current.play()
-    } else {
-      audioEl.current.pause()
-    }
+  const { title, image, epId, url } = eps[trackIndex]
+
+  //ref
+  // const audioRef = useRef(new Audio(url))
+  const intervalRef = useRef()
+  const isReady = useRef(false)
+
+  // const { duration } = audioRef.current
+
+  const toPrevTrack = () => {
+    console.log("to prev")
   }
 
+  const toNextTrack = () => {
+    console.log("to next")
+  }
   return (
-    <audio controls ref={audioEl}>
-      <source src={src} type="audio/mpeg" />
-    </audio>
+    <div>
+      <div>
+        <img src={image} alt={`track ${epId}: ${title}`} />
+        <h2>
+          {epId} {title}
+        </h2>
+      </div>
+    </div>
   )
 }
 

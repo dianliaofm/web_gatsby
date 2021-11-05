@@ -11,8 +11,9 @@ const episodeQuery = `
 
 const eps = [
   {
-    image: "https://sls11.s3.amazonaws.com/thumb1.jpg",
+    image: "",
     title: "test ep 1",
+    url: "http://cdn.lizhi.fm/audio/2021/10/29/2903886005449222150_ud.mp3",
     epId: 2,
   },
   {
