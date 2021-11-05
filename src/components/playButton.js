@@ -4,7 +4,7 @@ import PlayArrow from "@ant-design/icons/CaretRightOutlined"
 import Pause from "@ant-design/icons/PauseOutlined"
 
 const PlayButton = ({ isPlaying, toggleFn }) => {
-  const Btn = !isPlaying ? Pause : PlayArrow
+  const Btn = !!isPlaying ? Pause : PlayArrow
   return (
     <Button
       type="primary"
