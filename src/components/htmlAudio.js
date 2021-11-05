@@ -1,5 +1,5 @@
 import { useStaticQuery, graphql } from "gatsby"
-import React, { useRef, useState } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { useRecoilValue } from "recoil"
 import { playState } from "../state/store"
 
@@ -16,7 +16,7 @@ const episodesQuery = graphql`
   }
 `
 
-const Audio = () => {
+const CustomAudioContainer = () => {
   const data = useStaticQuery(episodesQuery)
   const eps = data.allEpisode.nodes
 
@@ -27,19 +27,82 @@ const Audio = () => {
   const { title, image, epId, url } = eps[trackIndex]
 
   //ref
-  // const audioRef = useRef(new Audio(url))
+  const audioRef = useRef(new Audio(url))
   const intervalRef = useRef()
   const isReady = useRef(false)
 
-  // const { duration } = audioRef.current
+  const { duration } = audioRef.current
 
   const toPrevTrack = () => {
-    console.log("to prev")
+    const prev_index = trackIndex < 1 ? eps.length : trackIndex - 1
+    setTrackIndex(prev_index)
   }
 
   const toNextTrack = () => {
-    console.log("to next")
+    const next_index = trackIndex < eps.length - 1 ? trackIndex + 1 : 0
+    setTrackIndex(next_index)
   }
+
+  useEffect(() => {
+    if (isPlaying) {
+      audioRef.current.play()
+      startTimer()
+    } else {
+      audioRef.current.pause()
+    }
+  }, [isPlaying])
+
+  useEffect(() => {
+    // Pause and clean up on unmount
+    return () => {
+      audioRef.current.pause()
+      clearInterval(intervalRef.current)
+    }
+  }, [])
+
+  useEffect(() => {
+    audioRef.current.pause()
+    audioRef.current = new Audio(url)
+    setTrackProgress(audioRef.current.currentTime)
+
+    if (isReady.current) {
+      audioRef.current.play()
+      setIsPlaying(true)
+      startTimer()
+    } else {
+      // Set the isReady ref as true for the next pass
+      isReady.current = true
+    }
+  }, [trackIndex])
+
+  const startTimer = () => {
+    // Clear any timers already running
+    clearInterval(intervalRef.current)
+
+    intervalRef.current = setInterval(() => {
+      if (audioRef.current.ended) {
+        toNextTrack()
+      } else {
+        setTrackProgress(audioRef.current.currentTime)
+      }
+    }, [1000])
+  }
+
+  const onScrub = value => {
+    // Clear any timers already running
+    clearInterval(intervalRef.current)
+    audioRef.current.currentTime = value
+    setTrackProgress(audioRef.current.currentTime)
+  }
+
+  const onScrubEnd = () => {
+    // If not already playing, start
+    if (!isPlaying) {
+      setIsPlaying(true)
+    }
+    startTimer()
+  }
+
   return (
     <div>
       <div>
@@ -47,20 +110,30 @@ const Audio = () => {
         <h2>
           {epId} {title}
         </h2>
-        <AudioControls
+        <CustomAudioControls
           isPlaying={isPlaying}
           onPrevClick={toPrevTrack}
           onNextClick={toNextTrack}
           onPlayPauseClick={setIsPlaying}
+        />
+        <input
+          type="range"
+          value={trackProgress}
+          step="1"
+          min="0"
+          max={duration ? duration : `${duration}`}
+          onChange={e => onScrub(e.target.value)}
+          onMouseUp={onScrubEnd}
+          onKeyUp={onScrubEnd}
         />
       </div>
     </div>
   )
 }
 
-export default Audio
+export default CustomAudioContainer
 
-const AudioControls = ({
+const CustomAudioControls = ({
   onPrevClick,
   isPlaying,
   onPlayPauseClick,
