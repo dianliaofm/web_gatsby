@@ -5,6 +5,7 @@ import React, { useEffect } from "react"
 import Layout from "./layout"
 import { episodeListState, playState , currentSecState, totalSecsState, customCurrentSecState} from "../state/store"
 import PlayButtonGroup from "./playButtonGroup"
+import Lipsum from "./lipsum"
 
 
 
@@ -38,6 +39,7 @@ const App = ({ pageTitle, children }) => {
     <Layout pageTitle={pageTitle} player={player}>
       {children}
       <PlayButtonGroup />
+      <Lipsum />
     </Layout>
   )
 }

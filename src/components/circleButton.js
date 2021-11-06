@@ -1,7 +1,7 @@
 import React from "react"
 import { Button } from "antd"
 
-const CircleButton = ({ style, children , ...rest}) => {
+const CircleButton = ({ style, children, ...rest }) => {
   return (
     <Button
       type="primary"
@@ -9,7 +9,7 @@ const CircleButton = ({ style, children , ...rest}) => {
       size="large"
       style={{
         margin: 5,
-        ...style
+        ...style,
       }}
       {...rest}
     >
@@ -19,3 +19,18 @@ const CircleButton = ({ style, children , ...rest}) => {
 }
 
 export default CircleButton
+
+export const PlainButton = ({ style, children, ...rest }) => {
+  return (
+    <Button
+      shape="circle"
+      size="large"
+      style={{
+        ...style,
+      }}
+      {...rest}
+    >
+      {children}
+    </Button>
+  )
+}
