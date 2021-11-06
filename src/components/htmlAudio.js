@@ -1,10 +1,10 @@
-import React, { useRef, useState, useEffect } from "react"
+import React, { useRef, useEffect } from "react"
 import { useRecoilState, useRecoilValue } from "recoil"
-import { episodeListState, playState } from "../state/store"
+import { episodeListState, currentSecState, playState } from "../state/store"
 
 const CustomAudioContainer = ({ url }) => {
-  const [trackProgress, setTrackProgress] = useState(0)
-  const [isPlaying, setIsPlaying] = useRecoilState(playState)
+  const [trackProgress, setTrackProgress] = useRecoilState(currentSecState)
+  const isPlaying = useRecoilValue(playState)
 
   //ref
   const audioRef = useRef(new Audio(url))

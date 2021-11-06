@@ -11,6 +11,11 @@ export const episodeListState = atom({
 })
 
 export const currentEpisodeIdState = atom({
-  key: "currentIndexState ",
+  key: "currentIndexState",
+  default: 0,
+})
+
+export const currentSecState = atom({
+  key: "currentSecState",
   default: 0,
 })

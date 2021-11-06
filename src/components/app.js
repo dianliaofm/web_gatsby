@@ -3,12 +3,8 @@ import { atom, useRecoilState, useRecoilValue } from "recoil"
 import Player from "./player"
 import React, { useEffect } from "react"
 import Layout from "./layout"
-import { episodeListState, playState } from "../state/store"
+import { episodeListState, playState , currentSecState} from "../state/store"
 
-const currentSecState = atom({
-  key: "currentSecState",
-  default: 0,
-})
 
 const totalSecsState = atom({
   key: "totalSecsState",
