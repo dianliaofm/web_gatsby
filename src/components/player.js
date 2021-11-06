@@ -9,6 +9,7 @@ const Player = ({
   toggleFn,
   slideFn,
   eps,
+  jumpToFn
 }) => {
   return (
     <div
@@ -22,6 +23,7 @@ const Player = ({
         currentSec={currentSec}
         totalSecs={totalSecs}
         changeFn={slideFn}
+        jumpToFn={jumpToFn}
       />
       <MiniControl toggleFn={toggleFn} isPlaying={isPlaying} eps={eps} />
     </div>

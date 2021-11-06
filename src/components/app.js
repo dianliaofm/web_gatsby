@@ -1,9 +1,9 @@
 import { useStaticQuery, graphql } from "gatsby"
-import { useRecoilState, useRecoilValue } from "recoil"
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
 import Player from "./player"
 import React, { useEffect } from "react"
 import Layout from "./layout"
-import { episodeListState, playState , currentSecState, totalSecsState} from "../state/store"
+import { episodeListState, playState , currentSecState, totalSecsState, customCurrentSecState} from "../state/store"
 
 
 
@@ -12,6 +12,7 @@ const App = ({ pageTitle, children }) => {
   const totalSecs = useRecoilValue(totalSecsState)
   const [isPlaying, setIsPlaying] = useRecoilState(playState)
   const [epList, setEpList] = useRecoilState(episodeListState)
+  const setCustomCurrentSec = useSetRecoilState(customCurrentSecState)
 
   const data = useStaticQuery(episodeListQuery)
   const eps = data.allEpisode.nodes
@@ -27,6 +28,7 @@ const App = ({ pageTitle, children }) => {
       totalSecs={totalSecs}
       currentSec={currentSec}
       slideFn={setCurrentSec}
+      jumpToFn={setCustomCurrentSec}
       eps={eps}
     />
   )

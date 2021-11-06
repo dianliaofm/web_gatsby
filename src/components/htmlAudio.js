@@ -5,12 +5,14 @@ import {
   currentSecState,
   playState,
   totalSecsState,
+  customCurrentSecState,
 } from "../state/store"
 
 const CustomAudioContainer = ({ url }) => {
-  const [trackProgress, setTrackProgress] = useRecoilState(currentSecState)
+  const setTrackProgress = useSetRecoilState(currentSecState)
   const isPlaying = useRecoilValue(playState)
   const setTotalSecs = useSetRecoilState(totalSecsState)
+  const [customSec, setCustomSec] = useRecoilState(customCurrentSecState)
 
   //ref
   const audioRef = useRef(new Audio(url))
@@ -20,6 +22,11 @@ const CustomAudioContainer = ({ url }) => {
   useEffect(() => {
     setTotalSecs(duration)
   }, [duration])
+
+  // jump to x second
+  useEffect(() => {
+    audioRef.current.currentTime = customSec
+  }, [customSec])
 
   useEffect(() => {
     if (isPlaying) {
@@ -35,6 +42,7 @@ const CustomAudioContainer = ({ url }) => {
     return () => {
       audioRef.current.pause()
       clearInterval(intervalRef.current)
+      setCustomSec(0)
     }
   }, [])
 

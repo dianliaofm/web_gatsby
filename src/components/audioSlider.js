@@ -2,7 +2,7 @@ import React from "react"
 import { formatDuration } from "../util/duration"
 import { Slider } from "antd"
 
-const AudioSlider = ({ currentSec, totalSecs, changeFn }) => {
+const AudioSlider = ({ currentSec, totalSecs, changeFn, jumpToFn }) => {
   return (
     <Slider
       aria-label="audio progress"
@@ -12,6 +12,7 @@ const AudioSlider = ({ currentSec, totalSecs, changeFn }) => {
       max={totalSecs}
       tipFormatter={formatDuration}
       onChange={changeFn}
+      onAfterChange={jumpToFn}
     />
   )
 }
