@@ -1,15 +1,25 @@
 import React, { useRef, useEffect } from "react"
-import { useRecoilState, useRecoilValue } from "recoil"
-import { episodeListState, currentSecState, playState } from "../state/store"
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
+import {
+  episodeListState,
+  currentSecState,
+  playState,
+  totalSecsState,
+} from "../state/store"
 
 const CustomAudioContainer = ({ url }) => {
   const [trackProgress, setTrackProgress] = useRecoilState(currentSecState)
   const isPlaying = useRecoilValue(playState)
+  const setTotalSecs = useSetRecoilState(totalSecsState)
 
   //ref
   const audioRef = useRef(new Audio(url))
   const intervalRef = useRef()
-  // const { duration } = audioRef.current
+
+  const { duration } = audioRef.current
+  useEffect(() => {
+    setTotalSecs(duration)
+  }, [duration])
 
   useEffect(() => {
     if (isPlaying) {

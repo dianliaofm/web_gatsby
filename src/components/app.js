@@ -1,15 +1,11 @@
 import { useStaticQuery, graphql } from "gatsby"
-import { atom, useRecoilState, useRecoilValue } from "recoil"
+import { useRecoilState, useRecoilValue } from "recoil"
 import Player from "./player"
 import React, { useEffect } from "react"
 import Layout from "./layout"
-import { episodeListState, playState , currentSecState} from "../state/store"
+import { episodeListState, playState , currentSecState, totalSecsState} from "../state/store"
 
 
-const totalSecsState = atom({
-  key: "totalSecsState",
-  default: 60,
-})
 
 const App = ({ pageTitle, children }) => {
   const [currentSec, setCurrentSec] = useRecoilState(currentSecState)
@@ -45,7 +41,7 @@ const App = ({ pageTitle, children }) => {
 export default App
 
 const episodeListQuery = graphql`
-  query EqQuery {
+  query EpQuery {
     allEpisode {
       nodes {
         epId

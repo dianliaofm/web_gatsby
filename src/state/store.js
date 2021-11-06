@@ -19,3 +19,8 @@ export const currentSecState = atom({
   key: "currentSecState",
   default: 0,
 })
+
+export const totalSecsState = atom({
+  key: "totalSecsState",
+  default: 60,
+})
