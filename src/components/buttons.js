@@ -1,7 +1,8 @@
 import React from "react"
 import { Button } from "antd"
+import Icon from "@ant-design/icons"
 
-const CircleButton = ({ style, children, ...rest }) => {
+export const CircleButton = ({ style, children }) => {
   return (
     <Button
       type="primary"
@@ -11,26 +12,27 @@ const CircleButton = ({ style, children, ...rest }) => {
         margin: 5,
         ...style,
       }}
-      {...rest}
     >
       {children}
     </Button>
   )
 }
 
-export default CircleButton
-
-export const PlainButton = ({ style, children, ...rest }) => {
+export const PlainButton = ({ children }) => {
   return (
     <Button
       shape="circle"
       size="large"
-      style={{
-        ...style,
-      }}
-      {...rest}
     >
       {children}
     </Button>
   )
 }
+
+export const CustomIconButton = ({ icon }) => (
+  <PlainButton>
+    <Icon
+      component={icon}
+    />
+  </PlainButton>
+)

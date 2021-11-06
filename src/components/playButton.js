@@ -1,7 +1,7 @@
 import React from "react"
 import PlayArrow from "@ant-design/icons/CaretRightOutlined"
 import Pause from "@ant-design/icons/PauseOutlined"
-import CircleButton from "./circleButton"
+import { CircleButton } from "./buttons"
 
 const PlayButton = ({ isPlaying, toggleFn }) => {
   const Btn = !!isPlaying ? Pause : PlayArrow
