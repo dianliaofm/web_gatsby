@@ -52,7 +52,8 @@ const CustomAudioContainer = ({ url }) => {
 
     intervalRef.current = setInterval(() => {
       if (!audioRef.current.ended) {
-        setTrackProgress(audioRef.current.currentTime)
+        let time1 = audioRef.current.currentTime
+        setTrackProgress(Math.floor(time1))
       }
     }, [1000])
   }
