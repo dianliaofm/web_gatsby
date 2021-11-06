@@ -7,7 +7,7 @@ import { CircleButton, PlainButton, CustomIconButton } from "./buttons"
 import Goback15 from "../assets/goback15.inline.svg"
 import Goforward30 from "../assets/goforward30.inline.svg"
 
-const PlayButtonGroup = () => {
+const PlayButtonGroup = ({ isPlaying, toggleFn }) => {
   return (
     <div>
       <Row justify="center" gutter={16}>
@@ -15,7 +15,7 @@ const PlayButtonGroup = () => {
           <CustomIconButton icon={Goback15} />
         </CenterCol>
         <CenterCol>
-          <PlayButton />
+          <PlayButton isPlaying={isPlaying} toggleFn={toggleFn} />
         </CenterCol>
         <CenterCol>
           <CustomIconButton icon={Goforward30} />

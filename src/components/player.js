@@ -9,7 +9,7 @@ const Player = ({
   toggleFn,
   slideFn,
   eps,
-  jumpToFn
+  jumpToFn,
 }) => {
   return (
     <div
