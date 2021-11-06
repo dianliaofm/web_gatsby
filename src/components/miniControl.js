@@ -1,6 +1,7 @@
 import React from "react"
 import PlayButton from "../components/playButton"
 import { Row, Col, Image } from "antd"
+import CenterCol from "./centerCol"
 
 const w = 64
 
@@ -20,16 +21,9 @@ const MiniControl = ({ toggleFn, isPlaying, eps }) => {
       >
         {currentEp.title}
       </Col>
-      <Col
-        flex="1"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <CenterCol flex="1">
         <PlayButton isPlaying={isPlaying} toggleFn={toggleFn} />
-      </Col>
+      </CenterCol>
     </Row>
   )
 }

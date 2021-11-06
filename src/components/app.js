@@ -4,6 +4,7 @@ import Player from "./player"
 import React, { useEffect } from "react"
 import Layout from "./layout"
 import { episodeListState, playState , currentSecState, totalSecsState, customCurrentSecState} from "../state/store"
+import PlayButtonGroup from "./playButtonGroup"
 
 
 
@@ -36,6 +37,7 @@ const App = ({ pageTitle, children }) => {
   return (
     <Layout pageTitle={pageTitle} player={player}>
       {children}
+      <PlayButtonGroup />
     </Layout>
   )
 }
