@@ -1,16 +1,16 @@
 import * as React from "react"
 import { Link } from "gatsby"
 
-import Layout from "../components/app"
+import App from "../components/app"
 import Seo from "../components/seo"
 
 const AboutPage = () => (
-  <Layout>
+  <App>
     <Seo title="Page about" />
     <h1>Hi from the about page</h1>
     <p>Welcome to about page</p>
     <Link to="/">Go back to the homepage</Link>
-  </Layout>
+  </App>
 )
 
 export default AboutPage

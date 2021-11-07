@@ -1,10 +1,10 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import Layout from "../components/app"
+import App from "../components/app"
 import Seo from "../components/seo"
 
 const IndexPage = () => (
-  <Layout>
+  <App>
     <Seo title="Home" />
     <p>
       <Link to="/page-2/">Go to page 2</Link> <br />
@@ -13,7 +13,7 @@ const IndexPage = () => (
       <br />
       <Link to="/about">Go to About</Link>
     </p>
-  </Layout>
+  </App>
 )
 
 export default IndexPage
