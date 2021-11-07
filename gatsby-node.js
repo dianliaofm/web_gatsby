@@ -1,48 +1,24 @@
-const episodeQuery = `
-  query epQuery {
-    allEpisode {
-      nodes {
-        epId
-        image
-        title
-      }
-    }
-  }`
-
 const eps = [
   {
-    image: "",
+    image:
+      "http://cdn.lizhi.fm/audio_cover/2021/10/25/2903118638241665031_80x80.jpg",
     title: "test ep 1",
+    url: "http://cdn.lizhi.fm/audio/2021/10/25/2903118635502990342_ud.mp3",
+    epId: 1,
+  },
+  {
+    image: "",
+    title: "test ep 2",
     url: "http://cdn.lizhi.fm/audio/2021/10/29/2903886005449222150_ud.mp3",
     epId: 2,
   },
   {
     image: "https://sls11.s3.amazonaws.com/thumb2.jpg",
-    title: "test ep 2",
+    title: "test ep 3",
     url: "http://podcast40.oss-cn-shanghai.aliyuncs.com/test1.mp3",
     epId: 3,
   },
 ]
-
-exports.createPages = async ({ actions, graphql }) => {
-  const { createPage } = actions
-  const result = await graphql(episodeQuery)
-  if (result.errors) {
-    throw result.errors
-  }
-
-  const arr = result.data.allEpisode.nodes
-  arr.forEach(x => {
-    createPage({
-      path: `/ep/${x.epId}`,
-      component: require.resolve("./src/templates/episode.js"),
-      context: {
-        id: x.epId,
-        title: x.title,
-      },
-    })
-  })
-}
 
 exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
   const { createNode } = actions
@@ -50,6 +26,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
   eps
     .map(x => {
       const nodeMeta = {
+        routeKey: x.epId,
         id: createNodeId(`Episode-${x.epId}`),
         parent: null,
         children: [],

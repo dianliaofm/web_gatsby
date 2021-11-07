@@ -45,6 +45,7 @@ const App = ({ pageTitle, children }) => {
       <PlayButtonGroup
         isPlaying={isPlaying}
         toggleFn={() => setIsPlaying(!isPlaying)}
+        hasNext={false}
       />
       <Lipsum />
     </Layout>

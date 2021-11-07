@@ -1,13 +1,13 @@
-import { Col, Row } from "antd"
+import { Row } from "antd"
 import React from "react"
 import CenterCol from "./centerCol"
 import PlayButton from "./playButton"
 import { StepForwardOutlined } from "@ant-design/icons"
-import { CircleButton, PlainButton, CustomIconButton } from "./buttons"
+import { CircleButton, CustomIconButton } from "./buttons"
 import Goback15 from "../assets/goback15.inline.svg"
 import Goforward30 from "../assets/goforward30.inline.svg"
 
-const PlayButtonGroup = ({ isPlaying, toggleFn }) => {
+const PlayButtonGroup = ({ isPlaying, toggleFn , goNextFn, hasNext}) => {
   return (
     <div>
       <Row justify="center" gutter={16}>
@@ -21,7 +21,7 @@ const PlayButtonGroup = ({ isPlaying, toggleFn }) => {
           <CustomIconButton icon={Goforward30} />
         </CenterCol>
         <CenterCol>
-          <CircleButton>
+          <CircleButton onClick={goNextFn} disabled={!hasNext}>
             <StepForwardOutlined />
           </CircleButton>
         </CenterCol>
