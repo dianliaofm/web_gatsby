@@ -1,6 +1,6 @@
 import React from "react"
-import PlayArrow from "@ant-design/icons/CaretRightOutlined"
-import Pause from "@ant-design/icons/PauseOutlined"
+import PlayArrow from '@mui/icons-material/PlayArrow';
+import Pause from '@mui/icons-material/Pause';
 import { CircleButton } from "./buttons"
 
 const PlayButton = ({ isPlaying, toggleFn }) => {

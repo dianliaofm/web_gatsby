@@ -12,6 +12,7 @@ import {
 } from "../state/store"
 import PlayButtonGroup from "./playButtonGroup"
 import Lipsum from "./lipsum"
+import { duration } from "@mui/material"
 
 const App = ({ pageTitle, children }) => {
   const [currentSec, setCurrentSec] = useRecoilState(currentSecState)
@@ -27,12 +28,15 @@ const App = ({ pageTitle, children }) => {
     setEpList(eps)
   }, [eps])
 
+  const current1 = currentSec || 0;
+  const duration1 = totalSecs || 1;
+
   const player = (
     <Player
       isPlaying={isPlaying}
       toggleFn={() => setIsPlaying(!isPlaying)}
-      totalSecs={totalSecs}
-      currentSec={currentSec}
+      totalSecs={duration1}
+      currentSec={current1}
       slideFn={setCurrentSec}
       jumpToFn={setCustomCurrentSec}
       eps={eps}

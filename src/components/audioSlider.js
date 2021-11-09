@@ -1,6 +1,6 @@
 import React from "react"
 import { formatDuration } from "../util/duration"
-import { Slider } from "antd"
+import Slider from "@mui/material/Slider"
 
 const AudioSlider = ({ currentSec, totalSecs, changeFn, jumpToFn }) => {
   return (
@@ -10,9 +10,10 @@ const AudioSlider = ({ currentSec, totalSecs, changeFn, jumpToFn }) => {
       value={currentSec}
       min={0}
       max={totalSecs}
-      tipFormatter={formatDuration}
-      onChange={changeFn}
-      onAfterChange={jumpToFn}
+      valueLabelFormat={formatDuration}
+      onChange={(event, val) => changeFn(val)}
+      onChangeCommitted={(event, val) => jumpToFn(val)}
+      valueLabelDisplay="auto"
     />
   )
 }

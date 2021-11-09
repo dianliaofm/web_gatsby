@@ -1,8 +1,8 @@
 import React from "react"
-import { Col } from "antd"
+import Grid from '@mui/material/Grid';
 
 const CenterCol = ({ style, children, ...rest }) => (
-  <Col
+  <Grid item
     {...rest}
     style={{
       display: "flex",
@@ -12,7 +12,7 @@ const CenterCol = ({ style, children, ...rest }) => (
     }}
   >
     {children}
-  </Col>
+  </Grid>
 )
 
 export default CenterCol

@@ -1,32 +1,31 @@
-import { Row } from "antd"
 import React from "react"
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 import CenterCol from "./centerCol"
 import PlayButton from "./playButton"
-import { StepForwardOutlined } from "@ant-design/icons"
 import { CircleButton, CustomIconButton } from "./buttons"
 import Goback15 from "../assets/goback15.inline.svg"
 import Goforward30 from "../assets/goforward30.inline.svg"
 
 const PlayButtonGroup = ({ isPlaying, toggleFn , goNextFn, hasNext}) => {
   return (
-    <div>
-      <Row justify="center" gutter={16}>
+    <Box>
+      <Grid container justify="center" spacing={2}>
         <CenterCol>
-          <CustomIconButton icon={Goback15} />
+          <CustomIconButton icon={<Goback15 />} />
         </CenterCol>
         <CenterCol>
           <PlayButton isPlaying={isPlaying} toggleFn={toggleFn} />
         </CenterCol>
         <CenterCol>
-          <CustomIconButton icon={Goforward30} />
+          <CustomIconButton icon={<Goforward30 />} />
         </CenterCol>
         <CenterCol>
-          <CircleButton onClick={goNextFn} disabled={!hasNext}>
-            <StepForwardOutlined />
-          </CircleButton>
+        next
         </CenterCol>
-      </Row>
-    </div>
+      </Grid>
+    </Box>
   )
 }
 
