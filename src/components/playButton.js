@@ -6,7 +6,7 @@ import { IconButton } from "@mui/material"
 const PlayButton = ({ isPlaying, toggleFn }) => {
   const Btn = !!isPlaying ? Pause : PlayArrow
   return (
-    <IconButton onClick={toggleFn}>
+    <IconButton onClick={toggleFn} color="primary">
       <Btn />
     </IconButton>
   )
