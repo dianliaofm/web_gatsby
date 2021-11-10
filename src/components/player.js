@@ -11,10 +11,10 @@ const Player = ({
   eps,
   jumpToFn,
   showPanel,
-  toggleListFn
+  toggleListFn,
 }) => {
-  const containerHeight = !!showPanel ? "100vh" : null;
-  const listDisplay = !!showPanel ? "block" : "none";
+  const containerHeight = !!showPanel ? "100vh" : null
+  const listDisplay = !!showPanel ? "block" : "none"
   return (
     <div
       style={{
@@ -23,11 +23,14 @@ const Player = ({
         display: "flex",
         flexDirection: "column-reverse",
         width: "100vw",
-        height: containerHeight
+        height: containerHeight,
       }}
     >
-      <MiniControl toggleFn={toggleFn} isPlaying={isPlaying} eps={eps} 
-      toggleListFn={toggleListFn}
+      <MiniControl
+        toggleFn={toggleFn}
+        isPlaying={isPlaying}
+        eps={eps}
+        toggleListFn={toggleListFn}
       />
       <AudioSlider
         currentSec={currentSec}
@@ -35,11 +38,15 @@ const Player = ({
         changeFn={slideFn}
         jumpToFn={jumpToFn}
       />
-      <div style={{
-        backgroundColor: "orange",
-        flexGrow: 1,
-        display: listDisplay
-      }}>playlist</div>
+      <div
+        style={{
+          backgroundColor: "orange",
+          flexGrow: 1,
+          display: listDisplay,
+        }}
+      >
+        playlist
+      </div>
     </div>
   )
 }
