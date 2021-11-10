@@ -12,13 +12,12 @@ import {
 } from "../state/store"
 import PlayButtonGroup from "./playButtonGroup"
 import Lipsum from "./lipsum"
-import { duration } from "@mui/material"
 
 const App = ({ pageTitle, children }) => {
   const [currentSec, setCurrentSec] = useRecoilState(currentSecState)
   const totalSecs = useRecoilValue(totalSecsState)
   const [isPlaying, setIsPlaying] = useRecoilState(playState)
-  const [epList, setEpList] = useRecoilState(episodeListState)
+  const setEpList = useRecoilState(episodeListState)[1]
   const setCustomCurrentSec = useSetRecoilState(customCurrentSecState)
 
   const data = useStaticQuery(episodeListQuery)
