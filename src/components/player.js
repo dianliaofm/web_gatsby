@@ -1,6 +1,7 @@
 import React from "react"
 import AudioSlider from "../components/audioSlider"
 import MiniControl from "../components/miniControl"
+import PlayButtonGroup from "../components/playButtonGroup"
 
 const Player = ({
   isPlaying,
@@ -40,12 +41,12 @@ const Player = ({
       />
       <div
         style={{
-          backgroundColor: "orange",
+          backgroundColor: "lightgray",
           flexGrow: 1,
           display: listDisplay,
         }}
       >
-        playlist
+        <PlayButtonGroup />
       </div>
     </div>
   )

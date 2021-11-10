@@ -11,7 +11,6 @@ import {
   customCurrentSecState,
   showPlayListState,
 } from "../state/store"
-import PlayButtonGroup from "./playButtonGroup"
 
 const App = ({ pageTitle, children }) => {
   const [currentSec, setCurrentSec] = useRecoilState(currentSecState)
@@ -48,11 +47,6 @@ const App = ({ pageTitle, children }) => {
   return (
     <Layout pageTitle={pageTitle} player={player}>
       {children}
-      <PlayButtonGroup
-        isPlaying={isPlaying}
-        toggleFn={() => setIsPlaying(!isPlaying)}
-        hasNext={false}
-      />
     </Layout>
   )
 }
