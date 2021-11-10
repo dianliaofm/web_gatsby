@@ -26,6 +26,11 @@ export const totalSecsState = atom({
 })
 
 export const customCurrentSecState = atom({
-  key: "customCurrentSecState ",
+  key: "customCurrentSecState",
+  default: 0,
+})
+
+export const showPlayListState = atom({
+  key: "showPlayListState",
   default: 0,
 })

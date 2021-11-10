@@ -9,9 +9,9 @@ import {
   currentSecState,
   totalSecsState,
   customCurrentSecState,
+  showPlayListState,
 } from "../state/store"
 import PlayButtonGroup from "./playButtonGroup"
-import Lipsum from "./lipsum"
 
 const App = ({ pageTitle, children }) => {
   const [currentSec, setCurrentSec] = useRecoilState(currentSecState)
@@ -19,6 +19,7 @@ const App = ({ pageTitle, children }) => {
   const [isPlaying, setIsPlaying] = useRecoilState(playState)
   const setEpList = useRecoilState(episodeListState)[1]
   const setCustomCurrentSec = useSetRecoilState(customCurrentSecState)
+  const [showPlaylist, setShowPlaylist] = useRecoilState(showPlayListState)
 
   const data = useStaticQuery(episodeListQuery)
   const eps = data.allEpisode.nodes
@@ -27,8 +28,8 @@ const App = ({ pageTitle, children }) => {
     setEpList(eps)
   }, [eps])
 
-  const current1 = currentSec || 0;
-  const duration1 = totalSecs || 1;
+  const current1 = currentSec || 0
+  const duration1 = totalSecs || 1
 
   const player = (
     <Player
@@ -39,6 +40,8 @@ const App = ({ pageTitle, children }) => {
       slideFn={setCurrentSec}
       jumpToFn={setCustomCurrentSec}
       eps={eps}
+      showPanel={showPlaylist}
+      toggleListFn={() => setShowPlaylist(!showPlaylist)}
     />
   )
 
@@ -50,7 +53,6 @@ const App = ({ pageTitle, children }) => {
         toggleFn={() => setIsPlaying(!isPlaying)}
         hasNext={false}
       />
-      <Lipsum />
     </Layout>
   )
 }
