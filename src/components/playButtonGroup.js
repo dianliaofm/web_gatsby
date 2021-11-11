@@ -13,6 +13,11 @@ const buttonHeight = {
   width: "1em",
 }
 
+const playBtnStyle = {
+  height: "2.5em",
+  width: "2.5em",
+}
+
 const PlayButtonGroup = ({ isPlaying, toggleFn, goNextFn, hasNext }) => {
   return (
     <Box>
@@ -23,7 +28,11 @@ const PlayButtonGroup = ({ isPlaying, toggleFn, goNextFn, hasNext }) => {
           </IconButton>
         </CenterCol>
         <CenterCol>
-          <PlayButton isPlaying={isPlaying} toggleFn={toggleFn} />
+          <PlayButton
+            isPlaying={isPlaying}
+            toggleFn={toggleFn}
+            btnStyle={playBtnStyle}
+          />
         </CenterCol>
         <CenterCol>
           <IconButton>
