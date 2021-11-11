@@ -1,6 +1,6 @@
 # https://www.alexhyett.com/github-actions-deploy-to-s3
 name: GitHub Actions S3
-on: [push]
+on: workflowe_dispatch
 jobs:
   Deploy-S3:
     runs-on: ubuntu-latest
