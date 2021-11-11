@@ -7,7 +7,9 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - uses: actions/steup-node@v2
+        with:
+          node-version: "16"
+      - run: npm install
+      - run: npm run build
+      - run: ls -l public
