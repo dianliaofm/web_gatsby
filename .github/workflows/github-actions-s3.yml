@@ -9,6 +9,8 @@ jobs:
         uses: actions/checkout@v2
       - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
       - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
       - name: Caching Gatsby
         id: gatsby-cache-build
         uses: actions/cache@v2
@@ -20,8 +22,6 @@ jobs:
           key: ${{ runner.os }}-gatsby-zt-site-build-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-gatsby-zt-site-build-
-        with:
-          node-version: "16"
       - run: npm install
       - run: npm run build
       - name: Set AWS credentials
