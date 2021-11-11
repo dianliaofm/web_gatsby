@@ -4,6 +4,8 @@ on: workflow_dispatch
 jobs:
   Deploy-S3:
     runs-on: ubuntu-latest
+    env:
+      DEST_BUCK: dianliao
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
