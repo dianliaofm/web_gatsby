@@ -3,6 +3,6 @@
  *
  * See: https://www.gatsbyjs.com/docs/ssr-apis/
  */
-import { wrapRootElement as wre  } from './universalBuild'
+import { wrapRootElement as wre } from "./universalBuild"
 
 export const wrapRootElement = wre

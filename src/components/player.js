@@ -1,7 +1,7 @@
 import React from "react"
 import AudioSlider from "../components/audioSlider"
 import MiniControl from "../components/miniControl"
-import PlayButtonGroup from "../components/playButtonGroup"
+import PlayControlPanel from "./playControlPanel"
 
 const Player = ({
   isPlaying,
@@ -14,40 +14,29 @@ const Player = ({
   showPanel,
   toggleListFn,
 }) => {
-  const containerHeight = !!showPanel ? "100vh" : null
-  const listDisplay = !!showPanel ? "block" : "none"
   return (
     <div
       style={{
         position: "fixed",
         bottom: 0,
         display: "flex",
-        flexDirection: "column-reverse",
         width: "100vw",
-        height: containerHeight,
+        flexDirection: "column",
       }}
     >
-      <MiniControl
-        toggleFn={toggleFn}
-        isPlaying={isPlaying}
-        eps={eps}
-        toggleListFn={toggleListFn}
-      />
       <AudioSlider
         currentSec={currentSec}
         totalSecs={totalSecs}
         changeFn={slideFn}
         jumpToFn={jumpToFn}
       />
-      <div
-        style={{
-          backgroundColor: "lightgray",
-          flexGrow: 1,
-          display: listDisplay,
-        }}
-      >
-        <PlayButtonGroup />
-      </div>
+      <MiniControl
+        toggleFn={toggleFn}
+        isPlaying={isPlaying}
+        currentEp={eps[0]}
+        toggleListFn={toggleListFn}
+      />
+      <PlayControlPanel showPanel={showPanel} onClose={toggleListFn} />
     </div>
   )
 }

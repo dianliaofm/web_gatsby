@@ -1,8 +1,9 @@
 import React from "react"
-import Grid from '@mui/material/Grid';
+import Grid from "@mui/material/Grid"
 
 const CenterCol = ({ style, children, ...rest }) => (
-  <Grid item
+  <Grid
+    item
     {...rest}
     style={{
       display: "flex",
