@@ -8,9 +8,9 @@ import { IconButton } from "@mui/material"
 import Forward30 from "@mui/icons-material/Forward30"
 import SkipNextIcon from "@mui/icons-material/SkipNext"
 
-const buttonHeight = {
-  height: "1em",
-  width: "1em",
+const secondBtnStyle = {
+  height: "2em",
+  width: "2em",
 }
 
 const playBtnStyle = {
@@ -21,10 +21,10 @@ const playBtnStyle = {
 const PlayButtonGroup = ({ isPlaying, toggleFn, goNextFn, hasNext }) => {
   return (
     <Box>
-      <Grid container justify="center" spacing={2}>
+      <Grid container justifyContent="center" spacing={2}>
         <CenterCol>
           <IconButton>
-            <Goback15 style={buttonHeight} />
+            <Goback15 style={secondBtnStyle} />
           </IconButton>
         </CenterCol>
         <CenterCol>
@@ -36,7 +36,7 @@ const PlayButtonGroup = ({ isPlaying, toggleFn, goNextFn, hasNext }) => {
         </CenterCol>
         <CenterCol>
           <IconButton>
-            <Forward30 />
+            <Forward30 sx={secondBtnStyle}/>
           </IconButton>
         </CenterCol>
         <CenterCol>
