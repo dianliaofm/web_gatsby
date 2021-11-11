@@ -2,7 +2,13 @@ import React from "react"
 import { formatDuration } from "../util/duration"
 import Slider from "@mui/material/Slider"
 
-const AudioSlider = ({ currentSec, totalSecs, changeFn, jumpToFn }) => {
+const AudioSlider = ({
+  currentSec,
+  totalSecs,
+  changeFn,
+  jumpToFn,
+  ...rest
+}) => {
   return (
     <Slider
       aria-label="audio progress"
@@ -14,6 +20,7 @@ const AudioSlider = ({ currentSec, totalSecs, changeFn, jumpToFn }) => {
       onChange={(event, val) => changeFn(val)}
       onChangeCommitted={(event, val) => jumpToFn(val)}
       valueLabelDisplay="auto"
+      {...rest}
     />
   )
 }

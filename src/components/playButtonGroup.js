@@ -7,6 +7,7 @@ import Goback15 from "../assets/goback15.inline.svg"
 import { IconButton } from "@mui/material"
 import Forward30 from "@mui/icons-material/Forward30"
 import SkipNextIcon from "@mui/icons-material/SkipNext"
+import SkipPrevious from "@mui/icons-material/SkipPrevious"
 
 const secondBtnStyle = {
   height: "2em",
@@ -23,6 +24,9 @@ const PlayButtonGroup = ({ isPlaying, toggleFn, goNextFn, hasNext }) => {
     <Box>
       <Grid container justifyContent="center" spacing={2}>
         <CenterCol>
+          <SkipPrevious />
+        </CenterCol>
+        <CenterCol>
           <IconButton>
             <Goback15 style={secondBtnStyle} />
           </IconButton>
@@ -36,7 +40,7 @@ const PlayButtonGroup = ({ isPlaying, toggleFn, goNextFn, hasNext }) => {
         </CenterCol>
         <CenterCol>
           <IconButton>
-            <Forward30 sx={secondBtnStyle}/>
+            <Forward30 sx={secondBtnStyle} />
           </IconButton>
         </CenterCol>
         <CenterCol>
