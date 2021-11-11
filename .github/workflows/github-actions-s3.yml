@@ -1,3 +1,4 @@
+# https://www.alexhyett.com/github-actions-deploy-to-s3
 name: GitHub Actions S3
 on: [push]
 jobs:
@@ -7,9 +8,26 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
-      - uses: actions/steup-node@v2
+      - uses: actions/setup-node@v2
+      - name: Caching Gatsby
+        id: gatsby-cache-build
+        uses: actions/cache@v2
+        with:
+          path: |
+            public
+            .cache
+            node_modules
+          key: ${{ runner.os }}-gatsby-zt-site-build-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-gatsby-zt-site-build-
         with:
           node-version: "16"
       - run: npm install
       - run: npm run build
-      - run: ls -l public
+      - name: Set AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - run: aws s3 sync public s3://${{ env.DEST_BUCK }}
