@@ -1,4 +1,4 @@
-import { atom } from "recoil"
+import { atom, selector } from "recoil"
 
 export const playState = atom({
   key: "playState",
@@ -33,4 +33,13 @@ export const customCurrentSecState = atom({
 export const showPlayListState = atom({
   key: "showPlayListState",
   default: 0,
+})
+
+export const currentEpState = selector({
+  key: "currentEpState",
+  get: ({get}) =>{
+    const list = get(episodeListState)
+    const id = get(currentEpisodeIdState)
+    return list.find(x => x.epId === id)
+  }
 })

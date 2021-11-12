@@ -6,23 +6,38 @@ import AudioSlider from "../components/audioSlider"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 import Stack from "@mui/material/Stack"
+import { formatDuration } from "../util/duration"
 
 const thumbHeight = 256
 
-function PlayControlPanel({ showPanel, onClose }) {
+function PlayControlPanel({
+  showPanel,
+  onClose,
+  currentEp,
+  currentSec,
+  totalSecs,
+}) {
+  let img1 = currentEp ? (
+    <img
+      width={thumbHeight}
+      height={thumbHeight}
+      src={currentEp.image}
+      alt={currentEp.title}
+    />
+  ) : (
+    <Skeleton
+      variant="rectangular"
+      width={thumbHeight}
+      height={thumbHeight}
+      animation={false}
+    />
+  )
   return (
     <Drawer anchor="bottom" open={!!showPanel} onClose={onClose}>
       <Stack spacing={1} alignItems="center">
-        <Skeleton
-          variant="rectangular"
-          width={thumbHeight}
-          height={thumbHeight}
-          animation={false}
-          sx={{
-            my: 2,
-          }}
-        />
-        <SliderTimed />
+        <Box my={2}>{img1}</Box>
+        <Typography>{currentEp.title}</Typography>
+        <SliderTimed totalSecs={totalSecs} currentSec={currentSec} />
         <PlayButtonGroup />
       </Stack>
     </Drawer>
@@ -31,12 +46,12 @@ function PlayControlPanel({ showPanel, onClose }) {
 
 export default PlayControlPanel
 
-function SliderTimed() {
+function SliderTimed({ currentSec, totalSecs }) {
   return (
     <Stack direction="row" spacing={2} alignItems="center" alignSelf="stretch">
-      <Typography>1:00</Typography>
+      <Typography>{formatDuration(currentSec)}</Typography>
       <AudioSlider currentSec={10} totalSecs={60} />
-      <Typography>10:00</Typography>
+      <Typography>{formatDuration(totalSecs)}</Typography>
     </Stack>
   )
 }

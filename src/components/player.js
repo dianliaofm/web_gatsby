@@ -9,11 +9,15 @@ const Player = ({
   totalSecs,
   toggleFn,
   slideFn,
-  eps,
+  currentEp,
   jumpToFn,
   showPanel,
   toggleListFn,
 }) => {
+  if (!currentEp) {
+    return null
+  }
+
   return (
     <div
       style={{
@@ -33,10 +37,16 @@ const Player = ({
       <MiniControl
         toggleFn={toggleFn}
         isPlaying={isPlaying}
-        currentEp={eps[0]}
+        currentEp={currentEp}
         toggleListFn={toggleListFn}
       />
-      <PlayControlPanel showPanel={showPanel} onClose={toggleListFn} />
+      <PlayControlPanel
+        showPanel={showPanel}
+        onClose={toggleListFn}
+        totalSecs={totalSecs}
+        currentSec={currentSec}
+        currentEp={currentEp}
+      />
     </div>
   )
 }

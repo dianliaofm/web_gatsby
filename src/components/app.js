@@ -10,25 +10,36 @@ import {
   totalSecsState,
   customCurrentSecState,
   showPlayListState,
+  currentEpState,
+  currentEpisodeIdState,
 } from "../state/store"
 
 const App = ({ pageTitle, children }) => {
   const [currentSec, setCurrentSec] = useRecoilState(currentSecState)
   const totalSecs = useRecoilValue(totalSecsState)
   const [isPlaying, setIsPlaying] = useRecoilState(playState)
-  const setEpList = useRecoilState(episodeListState)[1]
+  const [epList, setEpList] = useRecoilState(episodeListState)
   const setCustomCurrentSec = useSetRecoilState(customCurrentSecState)
   const [showPlaylist, setShowPlaylist] = useRecoilState(showPlayListState)
+  const currentEp = useRecoilValue(currentEpState)
+  const [currentEpId, setCurrentEpId] = useRecoilState(currentEpisodeIdState)
 
   const data = useStaticQuery(episodeListQuery)
   const eps = data.allEpisode.nodes
 
   useEffect(() => {
+    if (!currentEpId) {
+      const ep1 = epList[0]
+      ep1 && setCurrentEpId(ep1.epId)
+    }
+  })
+
+  useEffect(() => {
     setEpList(eps)
   }, [eps])
 
-  const current1 = currentSec || 0
-  const duration1 = totalSecs || 1
+  const current1 = Math.round(currentSec) || 0
+  const duration1 = Math.round(totalSecs) || 1
 
   const player = (
     <Player
@@ -38,7 +49,7 @@ const App = ({ pageTitle, children }) => {
       currentSec={current1}
       slideFn={setCurrentSec}
       jumpToFn={setCustomCurrentSec}
-      eps={eps}
+      currentEp={currentEp}
       showPanel={showPlaylist}
       toggleListFn={() => setShowPlaylist(!showPlaylist)}
     />
