@@ -22,9 +22,11 @@ const playBtnStyle = {
 const PlayButtonGroup = ({ isPlaying, toggleFn, goNextFn, hasNext }) => {
   return (
     <Box>
-      <Grid container justifyContent="center" spacing={2}>
+      <Grid container justifyContent="center" spacing={2} alignItems="center">
         <CenterCol>
-          <SkipPrevious />
+          <IconButton>
+            <SkipPrevious />
+          </IconButton>
         </CenterCol>
         <CenterCol>
           <IconButton>

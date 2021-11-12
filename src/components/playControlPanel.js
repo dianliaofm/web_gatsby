@@ -2,8 +2,12 @@ import React from "react"
 import { Drawer } from "@mui/material"
 import PlayButtonGroup from "../components/playButtonGroup"
 import Skeleton from "@mui/material/Skeleton"
-import Stack from "@mui/material/Stack"
 import AudioSlider from "../components/audioSlider"
+import Box from "@mui/material/Box"
+import Typography from "@mui/material/Typography"
+import Stack from "@mui/material/Stack"
+
+const thumbHeight = 256
 
 function PlayControlPanel({ showPanel, onClose }) {
   return (
@@ -11,20 +15,14 @@ function PlayControlPanel({ showPanel, onClose }) {
       <Stack spacing={1} alignItems="center">
         <Skeleton
           variant="rectangular"
-          width={200}
-          height={200}
+          width={thumbHeight}
+          height={thumbHeight}
           animation={false}
           sx={{
-            m: 10,
+            my: 2,
           }}
         />
-        <AudioSlider
-          currentSec={10}
-          totalSecs={60}
-          sx={{
-            width: "50%",
-          }}
-        />
+        <SliderTimed />
         <PlayButtonGroup />
       </Stack>
     </Drawer>
@@ -32,3 +30,13 @@ function PlayControlPanel({ showPanel, onClose }) {
 }
 
 export default PlayControlPanel
+
+function SliderTimed() {
+  return (
+    <Stack direction="row" spacing={2} alignItems="center" alignSelf="stretch">
+      <Typography>1:00</Typography>
+      <AudioSlider currentSec={10} totalSecs={60} />
+      <Typography>10:00</Typography>
+    </Stack>
+  )
+}
