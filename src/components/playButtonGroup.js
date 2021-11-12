@@ -19,7 +19,7 @@ const playBtnStyle = {
   width: "2.5em",
 }
 
-const PlayButtonGroup = ({ isPlaying, toggleFn, goNextFn, hasNext }) => {
+const PlayButtonGroup = ({ isPlaying, togglePlayFn, goNextFn, hasNext }) => {
   return (
     <Box>
       <Grid container justifyContent="center" spacing={2} alignItems="center">
@@ -36,7 +36,7 @@ const PlayButtonGroup = ({ isPlaying, toggleFn, goNextFn, hasNext }) => {
         <CenterCol>
           <PlayButton
             isPlaying={isPlaying}
-            toggleFn={toggleFn}
+            toggleFn={togglePlayFn}
             btnStyle={playBtnStyle}
           />
         </CenterCol>

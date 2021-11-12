@@ -44,7 +44,7 @@ const App = ({ pageTitle, children }) => {
   const player = (
     <Player
       isPlaying={isPlaying}
-      toggleFn={() => setIsPlaying(!isPlaying)}
+      togglePlayFn={() => setIsPlaying(!isPlaying)}
       totalSecs={duration1}
       currentSec={current1}
       slideFn={setCurrentSec}

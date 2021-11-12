@@ -7,7 +7,7 @@ const Player = ({
   isPlaying,
   currentSec,
   totalSecs,
-  toggleFn,
+  togglePlayFn,
   slideFn,
   currentEp,
   jumpToFn,
@@ -35,7 +35,7 @@ const Player = ({
         jumpToFn={jumpToFn}
       />
       <MiniControl
-        toggleFn={toggleFn}
+        toggleFn={togglePlayFn}
         isPlaying={isPlaying}
         currentEp={currentEp}
         toggleListFn={toggleListFn}
@@ -46,6 +46,10 @@ const Player = ({
         totalSecs={totalSecs}
         currentSec={currentSec}
         currentEp={currentEp}
+        isPlaying={isPlaying}
+        togglePlayFn={togglePlayFn}
+        changeFn={slideFn}
+        jumpToFn={jumpToFn}
       />
     </div>
   )

@@ -37,9 +37,9 @@ export const showPlayListState = atom({
 
 export const currentEpState = selector({
   key: "currentEpState",
-  get: ({get}) =>{
+  get: ({ get }) => {
     const list = get(episodeListState)
     const id = get(currentEpisodeIdState)
     return list.find(x => x.epId === id)
-  }
+  },
 })
