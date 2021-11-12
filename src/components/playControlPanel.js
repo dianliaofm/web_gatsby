@@ -14,6 +14,9 @@ function PlayControlPanel({ showPanel, onClose }) {
           width={200}
           height={200}
           animation={false}
+          sx={{
+            m: 10,
+          }}
         />
         <AudioSlider
           currentSec={10}
