@@ -40,11 +40,11 @@ describe("fetch", () => {
       },
       {
         date_key: "202002",
-        title: "one",
+        title: "two",
       },
       {
         date_key: "202102",
-        title: "one",
+        title: "two",
       },
     ]
     const ep$ = from(data).pipe(

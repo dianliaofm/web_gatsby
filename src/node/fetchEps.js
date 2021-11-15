@@ -8,7 +8,8 @@ const {
   pipe,
   groupBy,
   mergeMap,
-  scan,
+  filter,
+  toArray,
 } = require("rxjs")
 
 /**
@@ -55,26 +56,17 @@ const normalizeStamp = x => {
   })
 }
 
-// make route key for episode with same datekey
-function makeRouteKey(index, ep) {
-  return Object.assign(ep, {
-    routeKey: `${ep.dateKey}p${index}`,
-  })
-}
-
 const groupAndMakeRoute = pipe(
   groupBy(x => x.date_key),
-  mergeMap(eps$ =>
-    eps$.pipe(
-      scan((_, ep) => ep),
-      map((ep, index) => {
-        return {
-          routeKey: `${ep.date_key}p${index + 1}`,
-          ...ep,
-        }
-      })
-    )
-  )
+  mergeMap(eps$ => eps$.pipe(toArray())),
+  filter(arr => arr.length > 1),
+  map(eps =>
+    eps.map((x, i) => ({
+      routeKey: `${x.date_key}p${i + 1}`,
+      ...x,
+    }))
+  ),
+  mergeAll()
 )
 
 module.exports = {
