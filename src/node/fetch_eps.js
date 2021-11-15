@@ -1,11 +1,11 @@
 const { paginateScan, DynamoDBClient } = require("@aws-sdk/client-dynamodb")
 const { fromJS, Seq, Map } = require("immutable")
-const { from, map, mergeAll } = require("rxjs")
+const { from, map, mergeAll, take } = require("rxjs")
 
 /**
  * Fetch all eps from db. Used only for building.
  */
-exports.fetchAll = function (table, size) {
+exports.fetchAll = function (table, size, max) {
   const paginatorConfig = {
     client: new DynamoDBClient({}),
     pageSize: size,
@@ -16,6 +16,7 @@ exports.fetchAll = function (table, size) {
   return from(paginator).pipe(
     map(x => x.Items),
     mergeAll(),
+    take(max),
     map(x =>
       fromJS(x)
         .entrySeq()
