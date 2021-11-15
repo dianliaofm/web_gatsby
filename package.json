@@ -29,6 +29,7 @@
   "devDependencies": {
     "@aws-sdk/client-dynamodb": "^3.41.0",
     "immutable": "^4.0.0",
+    "jest": "^27.3.1",
     "prettier": "^2.4.1",
     "rxjs": "^7.4.0"
   },

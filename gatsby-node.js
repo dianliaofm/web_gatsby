@@ -1,4 +1,4 @@
-const { fetchAll } = require("./src/node/fetch_eps")
+const { fetchAll } = require("./src/node/fetchEps")
 const { map, lastValueFrom, tap, catchError, of, last } = require("rxjs")
 
 exports.sourceNodes = async ({
