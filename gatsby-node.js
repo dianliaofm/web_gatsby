@@ -14,9 +14,8 @@ exports.sourceNodes = async ({
 
   const ep$ = fetchAll(process.env.EP_TABLE, pageSize, epMax).pipe(
     map(x => {
-      reporter.info(`Episode: ${x.title}`)
+      reporter.info(`Episode: ${x.title}, route: ${x.routeKey}`)
       const nodeMeta = {
-        routeKey: x.timestamp,
         id: createNodeId(`Episode-${x.timestamp}`),
         parent: null,
         children: [],

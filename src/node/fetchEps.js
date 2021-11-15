@@ -15,14 +15,16 @@ const {
 /**
  * Fetch all eps from db. Used only for building.
  */
-exports.fetchAll = function (table, size, max) {
-  return from(pageRequest(table, size)).pipe(
+const fetchAll = function (table, size, max) {
+  const ep$ = from(pageRequest(table, size)).pipe(
     map(x => x.Items),
     mergeAll(),
     take(max),
     map(toRawStringProps),
     map(normalizeStamp)
   )
+
+  return groupAndMakeRoute(ep$)
 }
 
 const pageRequest = (table, size) => {
@@ -86,4 +88,5 @@ const groupAndMakeRoute = ep$ => {
 module.exports = {
   groupAndMakeRoute,
   normalizeStamp,
+  fetchAll,
 }
