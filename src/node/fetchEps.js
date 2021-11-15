@@ -5,11 +5,11 @@ const {
   map,
   mergeAll,
   take,
-  pipe,
   groupBy,
   mergeMap,
-  filter,
   toArray,
+  partition,
+  concat,
 } = require("rxjs")
 
 /**
@@ -56,18 +56,32 @@ const normalizeStamp = x => {
   })
 }
 
-const groupAndMakeRoute = pipe(
-  groupBy(x => x.date_key),
-  mergeMap(eps$ => eps$.pipe(toArray())),
-  filter(arr => arr.length > 1),
-  map(eps =>
-    eps.map((x, i) => ({
-      routeKey: `${x.date_key}p${i + 1}`,
-      ...x,
-    }))
-  ),
-  mergeAll()
-)
+const groupAndMakeRoute = ep$ => {
+  const epArr$ = ep$.pipe(
+    map(x =>
+      Object.assign(x, {
+        routeKey: x.date_key,
+      })
+    ),
+    groupBy(x => x.date_key),
+    mergeMap(eps$ => eps$.pipe(toArray()))
+  )
+
+  const [singArr$, duplicateArr$] = partition(epArr$, arr => arr.length <= 1)
+
+  return concat(
+    singArr$,
+    duplicateArr$.pipe(
+      map(eps =>
+        eps.map((x, i) =>
+          Object.assign(x, {
+            routeKey: `${x.date_key}p${i + 1}`,
+          })
+        )
+      )
+    )
+  ).pipe(mergeAll())
+}
 
 module.exports = {
   groupAndMakeRoute,
