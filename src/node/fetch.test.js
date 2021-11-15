@@ -1,4 +1,5 @@
-const { normalizeStamp } = require("./fetchEps")
+const { normalizeStamp, groupAndMakeRoute } = require("./fetchEps")
+const { from, lastValueFrom, tap } = require("rxjs")
 
 describe("fetch", () => {
   test("stamp", () => {
@@ -21,5 +22,42 @@ describe("fetch", () => {
       age: 22,
     }
     expect(normalizeStamp.bind(null, ob2)).toThrowError()
+  })
+
+  test("route", async () => {
+    const data = [
+      {
+        date_key: "202001",
+        title: "one",
+      },
+      {
+        date_key: "202001",
+        title: "one",
+      },
+      {
+        date_key: "202001",
+        title: "one",
+      },
+      {
+        date_key: "202002",
+        title: "one",
+      },
+      {
+        date_key: "202102",
+        title: "one",
+      },
+    ]
+    const ep$ = from(data).pipe(
+      groupAndMakeRoute,
+      tap(x => {
+        expect(x).toEqual(
+          expect.objectContaining({
+            routeKey: expect.stringMatching(/^202\d{3}p\d$/),
+            title: "one",
+          })
+        )
+      })
+    )
+    await lastValueFrom(ep$)
   })
 })

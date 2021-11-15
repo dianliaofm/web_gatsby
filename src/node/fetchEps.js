@@ -1,6 +1,15 @@
 const { paginateScan, DynamoDBClient } = require("@aws-sdk/client-dynamodb")
 const { fromJS, Map } = require("immutable")
-const { from, map, mergeAll, take } = require("rxjs")
+const {
+  from,
+  map,
+  mergeAll,
+  take,
+  pipe,
+  groupBy,
+  mergeMap,
+  scan,
+} = require("rxjs")
 
 /**
  * Fetch all eps from db. Used only for building.
@@ -46,4 +55,29 @@ const normalizeStamp = x => {
   })
 }
 
-exports.normalizeStamp = normalizeStamp
+// make route key for episode with same datekey
+function makeRouteKey(index, ep) {
+  return Object.assign(ep, {
+    routeKey: `${ep.dateKey}p${index}`,
+  })
+}
+
+const groupAndMakeRoute = pipe(
+  groupBy(x => x.date_key),
+  mergeMap(eps$ =>
+    eps$.pipe(
+      scan((_, ep) => ep),
+      map((ep, index) => {
+        return {
+          routeKey: `${ep.date_key}p${index + 1}`,
+          ...ep,
+        }
+      })
+    )
+  )
+)
+
+module.exports = {
+  groupAndMakeRoute,
+  normalizeStamp,
+}
