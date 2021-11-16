@@ -1,13 +1,24 @@
 import * as React from "react"
-import Stack from "@mui/material/Stack"
 import EpisodeCard from "./episodeCard"
+import Grid from "@mui/material/Grid"
 
 export default function EpisodeList({ epList }) {
   return (
-    <Stack spacing={5} alignItems="center" marginY={"20px"}>
-      {epList.map(ep => {
-        return <EpisodeCard key={ep.id} title={ep.title} image={ep.image} />
-      })}
-    </Stack>
+      <Grid
+        container
+        spacing={2}
+        alignItems="center"
+        justifyContent={"flex-start"}
+        marginTop={"20px"}
+        alignContent={"flex-start"}
+      >
+        {epList.map(ep => {
+          return (
+            <Grid key={ep.id} item xs={8} md={4} lg={3} alignItems={"center"}>
+              <EpisodeCard title={ep.title} image={ep.image} />
+            </Grid>
+          )
+        })}
+      </Grid>
   )
 }

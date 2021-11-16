@@ -1,7 +1,6 @@
 import { useStaticQuery, graphql } from "gatsby"
 import * as React from "react"
 import App from "../components/app"
-import BasicContainer from "../components/basicContainer"
 import EpisodeList from "../components/episodeList"
 // import Seo from "../components/seo"
 
@@ -10,9 +9,7 @@ const IndexPage = () => {
   const eps = data.allEpisode.nodes
   return (
     <App pageTitle={"Home"}>
-      <BasicContainer>
         <EpisodeList epList={eps} />
-      </BasicContainer>
     </App>
   )
 }
