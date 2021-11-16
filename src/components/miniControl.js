@@ -7,12 +7,7 @@ import IconButton from "@mui/material/IconButton"
 
 const w = 64
 
-const MiniControl = ({
-  toggleFn,
-  isPlaying,
-  currentEp,
-  toggleListFn,
-}) => {
+const MiniControl = ({ toggleFn, isPlaying, currentEp, toggleListFn }) => {
   return (
     <Grid container>
       <Grid item>

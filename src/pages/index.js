@@ -3,7 +3,11 @@ import * as React from "react"
 import { useRecoilState } from "recoil"
 import App from "../components/app"
 import EpisodeList from "../components/episodeList"
-import { currentEpisodeIdState, episodeListState, isInList } from "../state/store"
+import {
+  currentEpisodeIdState,
+  episodeListState,
+  isInList,
+} from "../state/store"
 // import Seo from "../components/seo"
 
 const IndexPage = () => {
@@ -11,16 +15,16 @@ const IndexPage = () => {
   const epsData = data.allEpisode.nodes
 
   const [currentId, setCurrentID] = useRecoilState(currentEpisodeIdState)
-  const [playList, setPlayList] =useRecoilState(episodeListState)
+  const [playList, setPlayList] = useRecoilState(episodeListState)
 
   function onPlayAudio(id, isAdded) {}
 
   function onAddAudio(id, isAdded) {}
 
-  const epsData2 = epsData.map((ep) => {
+  const epsData2 = epsData.map(ep => {
     return {
       ...ep,
-      isAdded: isInList(ep.id, playList)
+      isAdded: isInList(ep.id, playList),
     }
   })
 

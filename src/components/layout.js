@@ -28,9 +28,11 @@ const CustomLayout = ({
         metaData={metaData}
       />
       {children}
-      <div style={{
-        marginBottom: "256px"
-      }}></div>
+      <div
+        style={{
+          marginBottom: "256px",
+        }}
+      ></div>
       {player}
     </>
   )

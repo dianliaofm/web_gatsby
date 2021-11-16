@@ -13,6 +13,7 @@ const Player = ({
   jumpToFn,
   showPanel,
   toggleListFn,
+  playList,
 }) => {
   if (!currentEp) {
     return null
@@ -51,6 +52,7 @@ const Player = ({
         togglePlayFn={togglePlayFn}
         changeFn={slideFn}
         jumpToFn={jumpToFn}
+        playList={playList}
       />
     </div>
   )

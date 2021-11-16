@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Drawer } from "@mui/material"
 import PlayButtonGroup from "../components/playButtonGroup"
 import Skeleton from "@mui/material/Skeleton"
@@ -7,6 +7,9 @@ import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 import Stack from "@mui/material/Stack"
 import { formatDuration } from "../util/duration"
+import Tabs from "@mui/material/Tabs"
+import Tab from "@mui/material/Tab"
+import PlayList from "./densePlaylist"
 
 const thumbHeight = 256
 
@@ -20,6 +23,7 @@ function PlayControlPanel({
   isPlaying,
   changeFn,
   jumpToFn,
+  playList,
 }) {
   let img1 = currentEp ? (
     <img
@@ -45,11 +49,20 @@ function PlayControlPanel({
       jumpToFn={jumpToFn}
     />
   )
+
+  const audioTab = (
+    <>
+      <Box my={2}>{img1}</Box>
+      <Typography>{currentEp.title}</Typography>
+    </>
+  )
+
+  const playListTab = <PlayList playlist={playList} />
+
   return (
     <Drawer anchor="bottom" open={!!showPanel} onClose={onClose}>
       <Stack spacing={1} alignItems="center">
-        <Box my={2}>{img1}</Box>
-        <Typography>{currentEp.title}</Typography>
+        <TabPanel audioTab={audioTab} listTab={playListTab} />
         <SliderTimed
           totalSecs={totalSecs}
           currentSec={currentSec}
@@ -75,5 +88,40 @@ function SliderTimed({ currentSec, totalSecs, slider }) {
       {slider}
       <Typography>{formatDuration(totalSecs)}</Typography>
     </Stack>
+  )
+}
+
+function TabPanel({ listTab, audioTab }) {
+  const [value, setValue] = useState(0)
+  return (
+    <Box
+      sx={{
+        height: "400px",
+        alignSelf: "stretch",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <Box
+        sx={{
+          borderBottom: 1,
+          borderColor: "divider",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Tabs
+          value={value}
+          onChange={(ev, val) => setValue(val)}
+          aria-label="playlist tabs"
+        >
+          <Tab label="PlayList" id="tab-playlist" />
+          <Tab label="Audio" id="tab-audio" />
+        </Tabs>
+      </Box>
+      {value == 0 ? listTab : audioTab}
+    </Box>
   )
 }

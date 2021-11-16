@@ -18,7 +18,7 @@ const App = ({ pageTitle, children }) => {
   const [currentSec, setCurrentSec] = useRecoilState(currentSecState)
   const totalSecs = useRecoilValue(totalSecsState)
   const [isPlaying, setIsPlaying] = useRecoilState(playState)
-  const epList= useRecoilValue(episodeListState)
+  const playList = useRecoilValue(episodeListState)
   const setCustomCurrentSec = useSetRecoilState(customCurrentSecState)
   const [showPlaylist, setShowPlaylist] = useRecoilState(showPlayListState)
   const currentEp = useRecoilValue(currentEpState)
@@ -41,7 +41,7 @@ const App = ({ pageTitle, children }) => {
       currentEp={currentEp}
       showPanel={showPlaylist}
       toggleListFn={() => setShowPlaylist(!showPlaylist)}
-      epList={epList}
+      playList={playList}
     />
   )
 
