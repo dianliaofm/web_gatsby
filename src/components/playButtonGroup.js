@@ -36,7 +36,7 @@ const PlayButtonGroup = ({ isPlaying, togglePlayFn, goNextFn, hasNext }) => {
         <CenterCol>
           <PlayButton
             isPlaying={isPlaying}
-            toggleFn={togglePlayFn}
+            onClick={togglePlayFn}
             btnStyle={playBtnStyle}
           />
         </CenterCol>

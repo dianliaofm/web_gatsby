@@ -4,7 +4,7 @@ import Player from "./player"
 import React from "react"
 import Layout from "./layout"
 import {
-  // episodeListState,
+  episodeListState,
   playState,
   currentSecState,
   totalSecsState,
@@ -18,7 +18,7 @@ const App = ({ pageTitle, children }) => {
   const [currentSec, setCurrentSec] = useRecoilState(currentSecState)
   const totalSecs = useRecoilValue(totalSecsState)
   const [isPlaying, setIsPlaying] = useRecoilState(playState)
-  // const epList= useRecoilValue(episodeListState)
+  const epList= useRecoilValue(episodeListState)
   const setCustomCurrentSec = useSetRecoilState(customCurrentSecState)
   const [showPlaylist, setShowPlaylist] = useRecoilState(showPlayListState)
   const currentEp = useRecoilValue(currentEpState)
@@ -41,6 +41,7 @@ const App = ({ pageTitle, children }) => {
       currentEp={currentEp}
       showPanel={showPlaylist}
       toggleListFn={() => setShowPlaylist(!showPlaylist)}
+      epList={epList}
     />
   )
 

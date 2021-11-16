@@ -48,3 +48,7 @@ export const menuOpenState = atom({
   key: "menuOpenState",
   default: false,
 })
+
+export function isInList(id, list) {
+  return list.find(x => x.id === id) != undefined
+}

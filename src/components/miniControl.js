@@ -12,7 +12,6 @@ const MiniControl = ({
   isPlaying,
   currentEp,
   toggleListFn,
-  isUp,
 }) => {
   return (
     <Grid container>
@@ -23,7 +22,7 @@ const MiniControl = ({
         {currentEp.title}
       </Grid>
       <CenterCol flex="1">
-        <PlayButton isPlaying={isPlaying} toggleFn={toggleFn} />
+        <PlayButton isPlaying={isPlaying} onClick={toggleFn} />
       </CenterCol>
       <CenterCol flex="1">
         <IconButton onClick={toggleListFn}>

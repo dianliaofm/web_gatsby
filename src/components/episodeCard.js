@@ -1,13 +1,20 @@
 import * as React from "react"
 import Card from "@mui/material/Card"
 import CardHeader from "@mui/material/CardHeader"
-import IconButton from "@mui/material/IconButton"
 import { formatStamp } from "../util/date"
 // import ShareIcon from '@mui/icons-material/Share';
 import Box from "@mui/material/Box"
-import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline"
+import PlayButton from "./playButton"
+import { AddButton } from "./buttons"
 
-export default function EpisodeCard({ image, title, timestamp }) {
+export default function EpisodeCard({
+  image,
+  title,
+  timestamp,
+  playCurrentFn,
+  addCurrentFn,
+  isAdded,
+}) {
   return (
     <Card>
       <Box
@@ -18,21 +25,18 @@ export default function EpisodeCard({ image, title, timestamp }) {
           backgroundRepeat: "no-repeat",
           backgroundSize: "contain",
           backgroundPositionX: "center",
+        }}
+      ></Box>
+      <CardHeader title={title} subheader={formatStamp(timestamp)} />
+
+      <Box
+        sx={{
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center"
         }}
       >
-        <IconButton>
-          <PlayCircleOutlineIcon
-            sx={{
-              width: "50%",
-              height: "50%",
-            }}
-          />
-        </IconButton>
+        <PlayButton isPlaying={false} onClick={playCurrentFn} />
+        <AddButton isAdded={isAdded} onClick={addCurrentFn} />
       </Box>
-      <CardHeader title={title} subheader={formatStamp(timestamp)} />
     </Card>
   )
 }
