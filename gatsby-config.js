@@ -9,6 +9,7 @@ module.exports = {
     author: "",
     siteUrl: "https://dianliao.fm",
     gitUrl: "https://github.com/dianliaofm/web_gatsby",
+    weiboUrl: "https://weibo.com/dybwl",
     menuConfig: [
       {
         text: "首页",

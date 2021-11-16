@@ -88,6 +88,7 @@ const episodeListQuery = graphql`
         title
         siteUrl
         gitUrl
+        weiboUrl
         menuConfig {
           text
           path

@@ -5,7 +5,10 @@ import List from "@mui/material/List"
 import Divider from "@mui/material/Divider"
 import ListItem from "@mui/material/ListItem"
 import ListItemText from "@mui/material/ListItemText"
+import Button from "@mui/material/Button"
 import { Link } from "gatsby"
+import { FaGithub, FaWeibo } from "react-icons/fa"
+import Stack from "@mui/material/Stack"
 
 function NavMenu({ menuOpen, setMenuOpen, metaData }) {
   const { menuConfig } = metaData
@@ -20,6 +23,7 @@ function NavMenu({ menuOpen, setMenuOpen, metaData }) {
               key={x.id}
               style={{
                 textDecoration: "none",
+                color: "black"
               }}
             >
               <ListItem button>
@@ -30,10 +34,23 @@ function NavMenu({ menuOpen, setMenuOpen, metaData }) {
         </List>
 
         <Divider />
-        <Box>icons</Box>
+        <Stack direction="row" spacing={1} m={1}>
+          <LinkButton href={metaData.gitUrl} icon={<FaGithub />} />
+          <LinkButton href={metaData.weiboUrl} icon={<FaWeibo />} />
+        </Stack>
       </Box>
     </Drawer>
   )
 }
 
 export default NavMenu
+
+function LinkButton({ icon, href }) {
+  return (
+    <a href={href} target="_blank">
+      <Button variant="outlined" size="large">
+        {icon}
+      </Button>
+    </a>
+  )
+}
