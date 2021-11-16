@@ -43,3 +43,8 @@ export const currentEpState = selector({
     return list.find(x => x.epId === id)
   },
 })
+
+export const menuOpenState = atom({
+  key: "menuOpenState",
+  default: false,
+})

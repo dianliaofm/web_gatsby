@@ -12,6 +12,7 @@ import {
   showPlayListState,
   currentEpState,
   currentEpisodeIdState,
+  menuOpenState,
 } from "../state/store"
 
 const App = ({ pageTitle, children }) => {
@@ -23,6 +24,7 @@ const App = ({ pageTitle, children }) => {
   const [showPlaylist, setShowPlaylist] = useRecoilState(showPlayListState)
   const currentEp = useRecoilValue(currentEpState)
   const [currentEpId, setCurrentEpId] = useRecoilState(currentEpisodeIdState)
+  const [menuOpen, setMenuOpen] = useRecoilState(menuOpenState)
 
   const data = useStaticQuery(episodeListQuery)
   const eps = data.allEpisode.nodes
@@ -56,7 +58,12 @@ const App = ({ pageTitle, children }) => {
   )
 
   return (
-    <Layout pageTitle={pageTitle} player={player}>
+    <Layout
+      pageTitle={pageTitle}
+      player={player}
+      menuOpen={menuOpen}
+      setMenuOpen={setMenuOpen}
+    >
       {children}
     </Layout>
   )

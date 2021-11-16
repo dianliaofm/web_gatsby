@@ -12,11 +12,12 @@ import Typography from "@mui/material/Typography"
 import IconButton from "@mui/material/IconButton"
 import MenuIcon from "@mui/icons-material/Menu"
 import Button from "@mui/material/Button"
+import NavMenu from "./navMenu"
 
-const CustomLayout = ({ children, player }) => {
+const CustomLayout = ({ children, player, menuOpen, setMenuOpen }) => {
   return (
     <>
-      <Topbar />
+      <Topbar setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
       {children}
       {player}
     </>
@@ -25,9 +26,10 @@ const CustomLayout = ({ children, player }) => {
 
 export default CustomLayout
 
-function Topbar() {
+function Topbar({ setMenuOpen, menuOpen }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
+      <NavMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -36,6 +38,7 @@ function Topbar() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={() => setMenuOpen(!menuOpen)}
           >
             <MenuIcon />
           </IconButton>
@@ -45,7 +48,7 @@ function Topbar() {
                 to="/"
                 style={{
                   textDecoration: "none",
-                  color: "white"
+                  color: "white",
                 }}
               >
                 Dianliao
