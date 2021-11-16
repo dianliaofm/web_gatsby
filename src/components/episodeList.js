@@ -4,21 +4,24 @@ import Grid from "@mui/material/Grid"
 
 export default function EpisodeList({ epList }) {
   return (
-      <Grid
-        container
-        spacing={2}
-        alignItems="center"
-        justifyContent={"flex-start"}
-        marginTop={"20px"}
-        alignContent={"flex-start"}
-      >
-        {epList.map(ep => {
-          return (
-            <Grid key={ep.id} item xs={8} md={4} lg={3} alignItems={"center"}>
-              <EpisodeCard title={ep.title} image={ep.image} />
-            </Grid>
-          )
-        })}
-      </Grid>
+    <Grid
+      container
+      spacing={2}
+      marginTop={"20px"}
+      columns={{ xs: 4, md: 8, lg: 12 }}
+      justifyContent={{
+          xs: "center",
+          md: "center",
+          lg: "flex-start",
+      }}
+    >
+      {epList.map(ep => {
+        return (
+          <Grid key={ep.id} item xs={3} md={3} lg={3}>
+            <EpisodeCard {...ep} />
+          </Grid>
+        )
+      })}
+    </Grid>
   )
 }
