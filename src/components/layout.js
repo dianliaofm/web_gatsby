@@ -14,10 +14,20 @@ import MenuIcon from "@mui/icons-material/Menu"
 import Button from "@mui/material/Button"
 import NavMenu from "./navMenu"
 
-const CustomLayout = ({ children, player, menuOpen, setMenuOpen }) => {
+const CustomLayout = ({
+  children,
+  player,
+  menuOpen,
+  setMenuOpen,
+  metaData,
+}) => {
   return (
     <>
-      <Topbar setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
+      <Topbar
+        setMenuOpen={setMenuOpen}
+        menuOpen={menuOpen}
+        metaData={metaData}
+      />
       {children}
       {player}
     </>
@@ -26,10 +36,14 @@ const CustomLayout = ({ children, player, menuOpen, setMenuOpen }) => {
 
 export default CustomLayout
 
-function Topbar({ setMenuOpen, menuOpen }) {
+function Topbar({ setMenuOpen, menuOpen, metaData }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <NavMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <NavMenu
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
+        metaData={metaData}
+      />
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -42,19 +56,17 @@ function Topbar({ setMenuOpen, menuOpen }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Button>
-              <Link
-                to="/"
-                style={{
-                  textDecoration: "none",
-                  color: "white",
-                }}
-              >
-                Dianliao
-              </Link>
-            </Button>
-          </Typography>
+          <Link
+            to="/"
+            style={{
+              textDecoration: "none",
+              color: "white",
+            }}
+          >
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              {metaData.title}
+            </Typography>
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>

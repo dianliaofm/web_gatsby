@@ -4,10 +4,31 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: "Dianliao Gatsby",
+    title: "电聊",
     description: "",
     author: "",
     siteUrl: "https://dianliao.fm",
+    gitUrl: "https://github.com/dianliaofm/web_gatsby",
+    menuConfig: [
+      {
+        text: "首页",
+        path: "/",
+        key: "home",
+        id: 100,
+      },
+      {
+        text: "节目列表",
+        path: "/eplist",
+        key: "eplist",
+        id: 101,
+      },
+      {
+        text: "关于",
+        path: "/about",
+        key: "about",
+        id: 102,
+      },
+    ],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

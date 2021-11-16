@@ -28,6 +28,7 @@ const App = ({ pageTitle, children }) => {
 
   const data = useStaticQuery(episodeListQuery)
   const eps = data.allEpisode.nodes
+  const metaData = data.site.siteMetadata
 
   useEffect(() => {
     if (!currentEpId) {
@@ -63,6 +64,7 @@ const App = ({ pageTitle, children }) => {
       player={player}
       menuOpen={menuOpen}
       setMenuOpen={setMenuOpen}
+      metaData={metaData}
     >
       {children}
     </Layout>
@@ -79,6 +81,19 @@ const episodeListQuery = graphql`
         image
         title
         url
+      }
+    }
+    site {
+      siteMetadata {
+        title
+        siteUrl
+        gitUrl
+        menuConfig {
+          text
+          path
+          key
+          id
+        }
       }
     }
   }
