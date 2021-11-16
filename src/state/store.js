@@ -40,7 +40,7 @@ export const currentEpState = selector({
   get: ({ get }) => {
     const list = get(episodeListState)
     const id = get(currentEpisodeIdState)
-    return list.find(x => x.epId === id)
+    return list.find(x => x.id === id)
   },
 })
 

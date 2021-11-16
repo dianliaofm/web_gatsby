@@ -23,7 +23,7 @@ function NavMenu({ menuOpen, setMenuOpen, metaData }) {
               key={x.id}
               style={{
                 textDecoration: "none",
-                color: "black"
+                color: "black",
               }}
             >
               <ListItem button>
@@ -47,7 +47,7 @@ export default NavMenu
 
 function LinkButton({ icon, href }) {
   return (
-    <a href={href} target="_blank">
+    <a href={href} target="_blank" rel="noreferrer">
       <Button variant="outlined" size="large">
         {icon}
       </Button>
