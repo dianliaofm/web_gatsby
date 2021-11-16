@@ -1,19 +1,35 @@
+import { useStaticQuery, graphql } from "gatsby"
 import * as React from "react"
-import { Link } from "gatsby"
 import App from "../components/app"
-import Seo from "../components/seo"
+import BasicContainer from "../components/basicContainer"
+import EpisodeList from "../components/episodeList"
+// import Seo from "../components/seo"
 
-const IndexPage = () => (
-  <App>
-    <Seo title="Home" />
-    <p>
-      <Link to="/page-2/">Go to page 2</Link> <br />
-      <Link to="/ep/3">Go to "Episode 3"</Link> <br />
-      <Link to="/ep/2">Go to "Episode 2"</Link> <br />
-      <br />
-      <Link to="/about">Go to About</Link>
-    </p>
-  </App>
-)
+const IndexPage = () => {
+  const data = useStaticQuery(epListQuery)
+  const eps = data.allEpisode.nodes
+  return (
+    <App pageTitle={"Home"}>
+      <BasicContainer>
+        <EpisodeList epList={eps} />
+      </BasicContainer>
+    </App>
+  )
+}
 
 export default IndexPage
+
+const epListQuery = graphql`
+  query {
+    allEpisode(limit: 10, sort: { order: DESC, fields: timestamp }) {
+      nodes {
+        image
+        url
+        timestamp
+        title
+        id
+        subtitle
+      }
+    }
+  }
+`

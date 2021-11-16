@@ -26,6 +26,7 @@ const Player = ({
         display: "flex",
         width: "100vw",
         flexDirection: "column",
+        backgroundColor: "white",
       }}
     >
       <AudioSlider
