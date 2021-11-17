@@ -17,7 +17,9 @@ exports.fetchAll = function (table, size, max) {
 
 const pageRequest = (table, size) => {
   const paginatorConfig = {
-    client: new DynamoDBClient({}),
+    client: new DynamoDBClient({
+      region: "us-east-1"
+    }),
     pageSize: size,
   }
   const commandParams = { TableName: table }
